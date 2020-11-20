@@ -1,0 +1,35 @@
+{
+  "name": "dexie-encrypted-build",
+  "version": "1.2.200",
+  "description": "ES5 build of dexie-encrypted",
+  "main": "dist/index.js",
+  "license": "MIT",
+  "files": [
+    "dist/index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mhassan1/dexie-encrypted-build.git"
+  },
+  "keywords": [
+    "dexie",
+    "dexie-encrypted"
+  ],
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "dexie-encrypted": "1.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "rollup": "^2.33.3"
+  },
+  "peerDependencies": {
+    "dexie": "^2.0.4 || ^3.0.0"
+  }
+}
