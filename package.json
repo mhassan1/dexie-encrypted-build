@@ -1,11 +1,11 @@
 {
   "name": "dexie-encrypted-build",
-  "version": "1.2.200",
+  "version": "1.2.201",
   "description": "ES5 build of dexie-encrypted",
-  "main": "dist/index.js",
+  "main": "dist/dexie-encrypted.js",
   "license": "MIT",
   "files": [
-    "dist/index.js"
+    "dist"
   ],
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "dexie-encrypted"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build": "yarn build:dev && yarn build:prod",
+    "build:dev": "webpack --mode development",
+    "build:prod": "webpack --mode production"
   },
   "dependencies": {
     "dexie-encrypted": "1.2.2"
@@ -24,10 +26,9 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
-    "@rollup/plugin-babel": "^5.2.1",
-    "@rollup/plugin-commonjs": "^16.0.0",
-    "@rollup/plugin-node-resolve": "^10.0.0",
-    "rollup": "^2.33.3"
+    "babel-loader": "^8.2.1",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
   },
   "peerDependencies": {
     "dexie": "^2.0.4 || ^3.0.0"
