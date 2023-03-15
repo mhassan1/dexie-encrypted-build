@@ -11,14 +11,10 @@
 return /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-7.zip/node_modules/tweetnacl/nacl-fast.js":
+/***/ "../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-8.zip/node_modules/tweetnacl/nacl-fast.js":
 /*!***********************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-7.zip/node_modules/tweetnacl/nacl-fast.js ***!
+  !*** ../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-8.zip/node_modules/tweetnacl/nacl-fast.js ***!
   \***********************************************************************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: module, __webpack_require__ */
-/*! CommonJS bailout: module.exports is used directly at 2680:36-50 */
-/*! CommonJS bailout: module.exports is used directly at 2680:53-67 */
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 (function (nacl) {
@@ -2684,7 +2680,7 @@ return /******/ (function() { // webpackBootstrap
       });
     } else if (true) {
       // Node.js.
-      crypto = __webpack_require__(/*! crypto */ "?8465");
+      crypto = __webpack_require__(/*! crypto */ "?b5ad");
 
       if (crypto && crypto.randomBytes) {
         nacl.setPRNG(function (x, n) {
@@ -2704,14 +2700,10 @@ return /******/ (function() { // webpackBootstrap
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js":
 /*!****************************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js ***!
   \****************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2784,34 +2776,30 @@ var arrayNonindexKeys = [{
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/builtin.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/builtin.js":
 /*!****************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/builtin.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/builtin.js ***!
   \****************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./array-nonindex-keys.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js");
-/* harmony import */ var _types_undef_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/undef.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/undef.js");
-/* harmony import */ var _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/primitive-objects.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/primitive-objects.js");
-/* harmony import */ var _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./special-numbers.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/special-numbers.js");
-/* harmony import */ var _types_date_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../types/date.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/date.js");
-/* harmony import */ var _types_error_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../types/error.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/error.js");
-/* harmony import */ var _types_errors_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../types/errors.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/errors.js");
-/* harmony import */ var _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../types/regexp.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/regexp.js");
-/* harmony import */ var _types_map_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../types/map.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/map.js");
-/* harmony import */ var _types_set_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../types/set.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/set.js");
-/* harmony import */ var _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../types/arraybuffer.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/arraybuffer.js");
-/* harmony import */ var _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../types/typed-arrays.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/typed-arrays.js");
-/* harmony import */ var _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../types/dataview.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/dataview.js");
-/* harmony import */ var _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../types/intl-types.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/intl-types.js");
-/* harmony import */ var _types_bigint_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../types/bigint.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint.js");
-/* harmony import */ var _types_bigint_object_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../types/bigint-object.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint-object.js");
+/* harmony import */ var _array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./array-nonindex-keys.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/array-nonindex-keys.js");
+/* harmony import */ var _types_undef_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/undef.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/undef.js");
+/* harmony import */ var _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/primitive-objects.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/primitive-objects.js");
+/* harmony import */ var _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./special-numbers.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/special-numbers.js");
+/* harmony import */ var _types_date_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../types/date.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/date.js");
+/* harmony import */ var _types_error_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../types/error.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/error.js");
+/* harmony import */ var _types_errors_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../types/errors.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/errors.js");
+/* harmony import */ var _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../types/regexp.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/regexp.js");
+/* harmony import */ var _types_map_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../types/map.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/map.js");
+/* harmony import */ var _types_set_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../types/set.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/set.js");
+/* harmony import */ var _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../types/arraybuffer.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/arraybuffer.js");
+/* harmony import */ var _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../types/typed-arrays.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/typed-arrays.js");
+/* harmony import */ var _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../types/dataview.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/dataview.js");
+/* harmony import */ var _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../types/intl-types.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/intl-types.js");
+/* harmony import */ var _types_bigint_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../types/bigint.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint.js");
+/* harmony import */ var _types_bigint_object_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../types/bigint-object.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint-object.js");
 /* This preset includes types that are built-in into the JavaScript
     language itself, this should work universally.
 
@@ -2843,65 +2831,57 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var expObj = [_types_undef_js__WEBPACK_IMPORTED_MODULE_1__.default, // ES5
-_array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__.default, _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__.default, _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__.default, _types_date_js__WEBPACK_IMPORTED_MODULE_4__.default, _types_error_js__WEBPACK_IMPORTED_MODULE_5__.default, _types_errors_js__WEBPACK_IMPORTED_MODULE_6__.default, _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__.default].concat( // ES2015 (ES6)
+var expObj = [_types_undef_js__WEBPACK_IMPORTED_MODULE_1__["default"], // ES5
+_array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__["default"], _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__["default"], _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__["default"], _types_date_js__WEBPACK_IMPORTED_MODULE_4__["default"], _types_error_js__WEBPACK_IMPORTED_MODULE_5__["default"], _types_errors_js__WEBPACK_IMPORTED_MODULE_6__["default"], _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__["default"]].concat( // ES2015 (ES6)
 
 /* istanbul ignore next */
-typeof Map === 'function' ? _types_map_js__WEBPACK_IMPORTED_MODULE_8__.default : [],
+typeof Map === 'function' ? _types_map_js__WEBPACK_IMPORTED_MODULE_8__["default"] : [],
 /* istanbul ignore next */
-typeof Set === 'function' ? _types_set_js__WEBPACK_IMPORTED_MODULE_9__.default : [],
+typeof Set === 'function' ? _types_set_js__WEBPACK_IMPORTED_MODULE_9__["default"] : [],
 /* istanbul ignore next */
-typeof ArrayBuffer === 'function' ? _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__.default : [],
+typeof ArrayBuffer === 'function' ? _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__["default"] : [],
 /* istanbul ignore next */
-typeof Uint8Array === 'function' ? _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__.default : [],
+typeof Uint8Array === 'function' ? _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__["default"] : [],
 /* istanbul ignore next */
-typeof DataView === 'function' ? _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__.default : [],
+typeof DataView === 'function' ? _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__["default"] : [],
 /* istanbul ignore next */
-typeof Intl !== 'undefined' ? _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__.default : [],
+typeof Intl !== 'undefined' ? _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__["default"] : [],
 /* istanbul ignore next */
-typeof BigInt !== 'undefined' ? [_types_bigint_js__WEBPACK_IMPORTED_MODULE_14__.default, _types_bigint_object_js__WEBPACK_IMPORTED_MODULE_15__.default] : []);
+typeof BigInt !== 'undefined' ? [_types_bigint_js__WEBPACK_IMPORTED_MODULE_14__["default"], _types_bigint_object_js__WEBPACK_IMPORTED_MODULE_15__["default"]] : []);
 /* harmony default export */ __webpack_exports__["default"] = (expObj);
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/special-numbers.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/special-numbers.js":
 /*!************************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/special-numbers.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/special-numbers.js ***!
   \************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _types_nan_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../types/nan.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/nan.js");
-/* harmony import */ var _types_infinity_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/infinity.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/infinity.js");
-/* harmony import */ var _types_negative_infinity_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/negative-infinity.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/negative-infinity.js");
+/* harmony import */ var _types_nan_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../types/nan.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/nan.js");
+/* harmony import */ var _types_infinity_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../types/infinity.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/infinity.js");
+/* harmony import */ var _types_negative_infinity_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../types/negative-infinity.js */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/negative-infinity.js");
 
 
 
-var specialNumbers = [_types_nan_js__WEBPACK_IMPORTED_MODULE_0__.default, _types_infinity_js__WEBPACK_IMPORTED_MODULE_1__.default, _types_negative_infinity_js__WEBPACK_IMPORTED_MODULE_2__.default];
+var specialNumbers = [_types_nan_js__WEBPACK_IMPORTED_MODULE_0__["default"], _types_infinity_js__WEBPACK_IMPORTED_MODULE_1__["default"], _types_negative_infinity_js__WEBPACK_IMPORTED_MODULE_2__["default"]];
 /* harmony default export */ __webpack_exports__["default"] = (specialNumbers);
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/arraybuffer.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/arraybuffer.js":
 /*!******************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/arraybuffer.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/arraybuffer.js ***!
   \******************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/$$virtual/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-7.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
+/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -2946,19 +2926,15 @@ var arraybuffer = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint-object.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint-object.js":
 /*!********************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint-object.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint-object.js ***!
   \********************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -2983,14 +2959,10 @@ var bigintObject = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint.js":
 /*!*************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/bigint.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/bigint.js ***!
   \*************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3013,21 +2985,17 @@ var bigint = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/dataview.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/dataview.js":
 /*!***************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/dataview.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/dataview.js ***!
   \***************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/$$virtual/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-7.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
+/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
 
 
 var dataview = {
@@ -3087,19 +3055,15 @@ var dataview = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/date.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/date.js":
 /*!***********************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/date.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/date.js ***!
   \***********************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 
 var date = {
@@ -3129,19 +3093,15 @@ var date = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/error.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/error.js":
 /*!************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/error.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/error.js ***!
   \************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 
 var error = {
@@ -3171,19 +3131,15 @@ var error = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/errors.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/errors.js":
 /*!*************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/errors.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/errors.js ***!
   \*************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.g, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 /* eslint-env browser, node */
 
@@ -3215,14 +3171,10 @@ var errors = {}; // Comprises all built-in errors.
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/infinity.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/infinity.js":
 /*!***************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/infinity.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/infinity.js ***!
   \***************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3244,19 +3196,15 @@ var infinity = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/intl-types.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/intl-types.js":
 /*!*****************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/intl-types.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/intl-types.js ***!
   \*****************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 
 var IntlCollator = {
@@ -3301,19 +3249,15 @@ var intlTypes = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/map.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/map.js":
 /*!**********************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/map.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/map.js ***!
   \**********************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -3345,14 +3289,10 @@ var map = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/nan.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/nan.js":
 /*!**********************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/nan.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/nan.js ***!
   \**********************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3374,14 +3314,10 @@ var nan = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/negative-infinity.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/negative-infinity.js":
 /*!************************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/negative-infinity.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/negative-infinity.js ***!
   \************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3403,19 +3339,15 @@ var negativeInfinity = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/primitive-objects.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/primitive-objects.js":
 /*!************************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/primitive-objects.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/primitive-objects.js ***!
   \************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -3474,19 +3406,15 @@ var primitiveObjects = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/regexp.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/regexp.js":
 /*!*************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/regexp.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/regexp.js ***!
   \*************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 
 var regexp = {
@@ -3511,19 +3439,15 @@ var regexp = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/set.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/set.js":
 /*!**********************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/set.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/set.js ***!
   \**********************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
@@ -3555,21 +3479,17 @@ var set = {
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/typed-arrays.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/typed-arrays.js":
 /*!*******************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/typed-arrays.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/typed-arrays.js ***!
   \*******************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.g, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/$$virtual/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-7.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
+/* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
 /* eslint-env browser, node */
 
 
@@ -3643,19 +3563,15 @@ var typedArrays = {};
 
 /***/ }),
 
-/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/undef.js":
+/***/ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/undef.js":
 /*!************************************************************************************************************************************!*\
-  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/types/undef.js ***!
+  !*** ../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/types/undef.js ***!
   \************************************************************************************************************************************/
-/*! namespace exports */
-/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_exports__, __webpack_require__.r, __webpack_require__.* */
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js");
+/* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 // This does not preserve `undefined` in sparse arrays; see the `undefined`
 //  or `sparse-undefined` preset
@@ -3679,15 +3595,10 @@ var undef = {
 
 /***/ }),
 
-/***/ "./.yarn/$$virtual/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-7.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js":
-/*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./.yarn/$$virtual/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-7.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js ***!
-  \***********************************************************************************************************************************************************************************************************/
-/*! namespace exports */
-/*! export decode [provided] [no usage info] [missing usage info prevents renaming] */
-/*! export encode [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ "./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js ***!
+  \*************************************************************************************************************************************************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3785,423 +3696,10 @@ var decode = function decode(base64) {
 
 /***/ }),
 
-/***/ "./.yarn/$$virtual/dexie-encrypted-virtual-e7644758b0/4/.yarn/berry/cache/dexie-encrypted-npm-1.2.2-83d274323c-7.zip/node_modules/dexie-encrypted/dist/index.js":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./.yarn/$$virtual/dexie-encrypted-virtual-e7644758b0/4/.yarn/berry/cache/dexie-encrypted-npm-1.2.2-83d274323c-7.zip/node_modules/dexie-encrypted/dist/index.js ***!
-  \**********************************************************************************************************************************************************************/
-/*! flagged exports */
-/*! export __esModule [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! export clearAllTables [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! export clearEncryptedTables [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! export cryptoOptions [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! export default [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! export tableEncryptionOptions [provided] [maybe used in dexie-encrypted (runtime-defined)] [usage prevents renaming] */
-/*! other exports [not provided] [maybe used in dexie-encrypted (runtime-defined)] */
-/*! runtime requirements: __webpack_exports__, __webpack_require__ */
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-function _interopDefault(ex) {
-  return ex && _typeof(ex) === 'object' && 'default' in ex ? ex['default'] : ex;
-}
-
-var Dexie = _interopDefault(__webpack_require__(/*! dexie */ "dexie"));
-
-var nacl = _interopDefault(__webpack_require__(/*! tweetnacl */ "../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-7.zip/node_modules/tweetnacl/nacl-fast.js"));
-
-var Typeson = _interopDefault(__webpack_require__(/*! typeson */ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js"));
-
-var builtinTypes = _interopDefault(__webpack_require__(/*! typeson-registry/presets/builtin */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-7.zip/node_modules/typeson-registry/presets/builtin.js")); // Import some usable helper functions
-
-
-var override = Dexie.override;
-var _Promise = Dexie.Promise;
-var tableEncryptionOptions = {
-  DATA: 'NON_INDEXED_FIELDS',
-  NON_INDEXED_FIELDS: 'NON_INDEXED_FIELDS',
-  // DATA_AND_INDICES: 'DATA_AND_INDICES', // not implemented.
-  WHITELIST: 'WHITELIST',
-  BLACKLIST: 'BLACKLIST'
-};
-var cryptoOptions = tableEncryptionOptions;
-/* options example: 
-{
-	table1: cryptoOptions.NON_INDEXED_FIELDS,
-	table2: {
-		type: cryptoOptions.WHITELIST,
-		fields: ['harmlessData1', 'harmlessId']
-	},
-	table3: {
-		type: cryptoOptions.BLACKLIST,
-		fields: ['sensitiveField1', 'sensitiveField2']
-	}
-}
-*/
-
-var tson = new Typeson().register([builtinTypes]);
-
-function overrideParseStoresSpec(origFunc) {
-  return function (stores, dbSchema) {
-    stores._encryptionSettings = '++id';
-    origFunc.call(this, stores, dbSchema);
-  };
-}
-
-function compareArrays(a, b) {
-  if (a.length !== b.length) {
-    return false;
-  }
-
-  for (var i = 0; i < a.length; i++) {
-    if (a[i] !== b[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-var encoder = new TextEncoder();
-var decoder = new TextDecoder();
-
-function encryptObject(key, object, nonce) {
-  nonce = nonce || nacl.randomBytes(nacl.secretbox.nonceLength);
-  var stringToEncrypt = tson.stringify(object);
-  var encoded = encoder.encode(stringToEncrypt);
-  var encrypted = nacl.secretbox(encoded, nonce, key);
-  var data = new Uint8Array(nonce.length + encrypted.length);
-  data.set(nonce);
-  data.set(encrypted, nonce.length);
-  return data;
-} // this prevents changing the shape of the object so
-// the underlying engine can optimize the hidden class
-
-
-function hideValue(input) {
-  switch (_typeof(input)) {
-    case 'number':
-      return 0;
-
-    case 'string':
-      return '';
-
-    case 'boolean':
-      return false;
-
-    case 'undefined':
-      return undefined;
-
-    case 'symbol':
-      return undefined;
-  }
-
-  return {};
-}
-
-function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
-  var keyPromise;
-
-  if (keyOrPromise.then) {
-    keyPromise = keyOrPromise;
-  } else if (keyOrPromise instanceof Uint8Array && keyOrPromise.length === 32) {
-    keyPromise = Dexie.Promise.resolve(keyOrPromise);
-  } else {
-    throw new Error('Dexie-encrypted requires a UInt8Array of length 32 for a encryption key.');
-  }
-
-  db.Version.prototype._parseStoresSpec = override(db.Version.prototype._parseStoresSpec, overrideParseStoresSpec);
-
-  if (db.verno > 0) {
-    // Make sure new tables are added if calling encrypt after defining versions.
-    try {
-      db.version(db.verno).stores({});
-    } catch (error) {
-      throw new Error('Dexie-encrypt: The call to encrypt() cannot be done on an open database');
-    }
-  }
-
-  function encryptWithRule(table, entity, rule) {
-    if (rule === undefined) {
-      return entity;
-    }
-
-    var toEncrypt = {};
-
-    if (rule.type === cryptoOptions.BLACKLIST) {
-      for (var i = 0; i < rule.fields.length; i++) {
-        toEncrypt[rule.fields[i]] = entity[rule.fields[i]];
-        entity[rule.fields[i]] = hideValue(entity[rule.fields[i]]);
-      }
-    } else {
-      var indices = table.schema.indexes.map(function (index) {
-        return index.name;
-      });
-      var whitelist = rule.type === cryptoOptions.WHITELIST ? rule.fields : [];
-
-      for (var _key in entity) {
-        if (_key !== table.schema.primKey.name && entity.hasOwnProperty(_key) && indices.includes(_key) === false && whitelist.includes(_key) === false) {
-          toEncrypt[_key] = entity[_key];
-          entity[_key] = hideValue(entity[_key]);
-        }
-      }
-    }
-
-    entity.__encryptedData = encryptObject(key, toEncrypt, nonceOverride);
-    return entity;
-  }
-
-  function decryptWithRule(entity, rule) {
-    if (rule === undefined) {
-      return entity;
-    }
-
-    if (entity && entity.__encryptedData) {
-      var nonce = entity.__encryptedData.slice(0, nacl.secretbox.nonceLength);
-
-      var message = entity.__encryptedData.slice(nacl.secretbox.nonceLength, entity.__encryptedData.length);
-
-      var rawDecrypted = nacl.secretbox.open(message, nonce, key);
-      var stringified = decoder.decode(rawDecrypted);
-      var decrypted = tson.parse(stringified);
-      var toReturn = {};
-
-      for (var k in entity) {
-        if (decrypted.hasOwnProperty(k)) {
-          toReturn[k] = decrypted[k];
-        } else if (entity.hasOwnProperty(k) && k !== '__encryptedData') {
-          toReturn[k] = entity[k];
-        }
-      }
-
-      return toReturn;
-    }
-
-    return entity;
-  }
-
-  var key;
-  db.on('ready', function () {
-    var encryptionSettings;
-
-    try {
-      encryptionSettings = db.table('_encryptionSettings');
-    } catch (error) {
-      throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
-    }
-
-    return keyPromise.then(function (receivedKey) {
-      if (receivedKey instanceof Uint8Array && receivedKey.length === 32) {
-        key = receivedKey;
-      } else {
-        throw new Error('Dexie-encrypted requires a UInt8Array of length 32 for a encryption key.');
-      }
-    }).then(function () {
-      return encryptionSettings.toCollection().last().then(function (oldSettings) {
-        var changeDetectionObj = oldSettings ? oldSettings['__key_change_detection'] : null;
-        var onKeyChangeResult;
-
-        var keyChangePromise = _Promise.resolve();
-
-        if (changeDetectionObj) {
-          var nonce = changeDetectionObj.slice(0, nacl.secretbox.nonceLength);
-          var message = changeDetectionObj.slice(nacl.secretbox.nonceLength, changeDetectionObj.length);
-          var rawDecrypted = nacl.secretbox.open(message, nonce, key);
-
-          if (!rawDecrypted) {
-            // The key has changed. Let's call the handler
-            onKeyChangeResult = onKeyChange(db);
-            keyChangePromise = onKeyChangeResult.then ? onKeyChangeResult : new _Promise(function (resolve) {
-              resolve(onKeyChangeResult);
-            });
-          }
-        }
-
-        return keyChangePromise.then(function () {
-          return _Promise.all(db.tables.map(function (table) {
-            var oldSetting = oldSettings ? oldSettings[table.name] : undefined;
-            var newSetting = cryptoSettings[table.name];
-
-            function setupHooks() {
-              if (newSetting === undefined) {
-                return;
-              }
-
-              table.hook('creating', function (primKey, obj) {
-                var preservedValue = _objectSpread({}, obj);
-
-                encryptWithRule(table, obj, newSetting);
-
-                this.onsuccess = function () {
-                  delete obj.__encryptedData;
-                  Object.assign(obj, preservedValue);
-                };
-
-                this.onerror = function () {
-                  delete obj.__encryptedData;
-                  Object.assign(obj, preservedValue);
-                };
-              });
-              table.hook('updating', function (modifications) {
-                var encrypted = encryptWithRule(table, _objectSpread({}, this.value), newSetting);
-                return encrypted;
-              });
-              table.hook('reading', function (obj) {
-                return decryptWithRule(obj, newSetting);
-              });
-            }
-
-            if (oldSetting === newSetting) {
-              // no upgrade needed.
-              setupHooks();
-              return;
-            }
-
-            if (oldSetting === undefined || newSetting === undefined) ;else if (typeof oldSetting !== 'string' && typeof newSetting !== 'string') {
-              // both non-strings. Figure out if they're the same.
-              if (newSetting.type === oldSetting.type) {
-                if (compareArrays(newSetting.fields, oldSetting.fields)) {
-                  // no upgrade needed.
-                  setupHooks();
-                  return;
-                }
-              }
-            }
-            return table.toCollection().modify(function (entity, ref) {
-              var decrypted = decryptWithRule(entity, oldSetting);
-              ref.value = encryptWithRule(table, decrypted, newSetting);
-              return true;
-            }).then(setupHooks);
-          }));
-        });
-      }).then(function () {
-        return encryptionSettings.clear();
-      }).then(function () {
-        return encryptionSettings.put(_objectSpread({
-          __key_change_detection: encryptObject(key, [1, 2, 3, 4, 5], new Uint8Array(24))
-        }, cryptoSettings));
-      })["catch"](function (error) {
-        if (error.name === 'NotFoundError') {
-          throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
-        } else {
-          return _Promise.reject(error);
-        }
-      });
-    });
-  });
-}
-
-function clearAllTables(db) {
-  return _Promise.all(db.tables.map(function (table) {
-    return table.clear();
-  }));
-}
-
-function clearEncryptedTables(_x) {
-  return _clearEncryptedTables.apply(this, arguments);
-}
-
-function _clearEncryptedTables() {
-  _clearEncryptedTables = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(db) {
-    var encryptionSettings, promises;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return db.table('_encryptionSettings').toCollection().last();
-
-          case 3:
-            encryptionSettings = _context2.sent;
-            _context2.next = 9;
-            break;
-
-          case 6:
-            _context2.prev = 6;
-            _context2.t0 = _context2["catch"](0);
-            throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
-
-          case 9:
-            promises = Object.keys(encryptionSettings).map( /*#__PURE__*/function () {
-              var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(key) {
-                var encryptionSettingValue;
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        encryptionSettingValue = encryptionSettings[key];
-
-                        if (!tableEncryptionOptions[encryptionSettingValue]) {
-                          _context.next = 4;
-                          break;
-                        }
-
-                        _context.next = 4;
-                        return db.table(key).clear();
-
-                      case 4:
-                      case "end":
-                        return _context.stop();
-                    }
-                  }
-                }, _callee);
-              }));
-
-              return function (_x2) {
-                return _ref.apply(this, arguments);
-              };
-            }());
-            return _context2.abrupt("return", _Promise.all(promises));
-
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[0, 6]]);
-  }));
-  return _clearEncryptedTables.apply(this, arguments);
-}
-
-Object.assign(encrypt, cryptoOptions, {
-  clearAllTables: clearAllTables,
-  clearEncryptedTables: clearEncryptedTables
-});
-exports.clearAllTables = clearAllTables;
-exports.clearEncryptedTables = clearEncryptedTables;
-exports.cryptoOptions = cryptoOptions;
-exports.default = encrypt;
-exports.tableEncryptionOptions = tableEncryptionOptions;
-
-/***/ }),
-
-/***/ "./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js":
-/*!*************************************************************************************************************************************************!*\
-  !*** ./.yarn/$$virtual/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-7.zip/node_modules/typeson/dist/typeson.js ***!
-  \*************************************************************************************************************************************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements: __webpack_exports__, module, top-level-this-exports, __webpack_require__ */
-/*! CommonJS bailout: this is used directly at 5:3-7 */
-/*! CommonJS bailout: exports is used directly at 4:59-66 */
-/*! CommonJS bailout: module.exports is used directly at 4:117-131 */
+/***/ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js ***!
+  \***************************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
@@ -5970,9 +5468,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
 /*!************************!*\
   !*** external "dexie" ***!
   \************************/
-/*! dynamic exports */
-/*! exports [maybe provided (runtime-defined)] [no usage info] */
-/*! runtime requirements: module */
 /***/ (function(module) {
 
 "use strict";
@@ -5980,12 +5475,10 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_dexie__;
 
 /***/ }),
 
-/***/ "?8465":
+/***/ "?b5ad":
 /*!************************!*\
   !*** crypto (ignored) ***!
   \************************/
-/*! unknown exports (runtime-defined) */
-/*! runtime requirements:  */
 /***/ (function() {
 
 /* (ignored) */
@@ -6000,8 +5493,9 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_dexie__;
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/ 		// Check if module is in cache
-/******/ 		if(__webpack_module_cache__[moduleId]) {
-/******/ 			return __webpack_module_cache__[moduleId].exports;
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
 /******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
@@ -6071,10 +5565,405 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_dexie__;
 /******/ 	}();
 /******/ 	
 /************************************************************************/
-/******/ 	// module exports must be returned from runtime so entry inlining is disabled
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__("./.yarn/$$virtual/dexie-encrypted-virtual-e7644758b0/4/.yarn/berry/cache/dexie-encrypted-npm-1.2.2-83d274323c-7.zip/node_modules/dexie-encrypted/dist/index.js");
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+!function() {
+"use strict";
+var exports = __webpack_exports__;
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./.yarn/__virtual__/dexie-encrypted-virtual-e7644758b0/4/.yarn/berry/cache/dexie-encrypted-npm-1.2.2-83d274323c-8.zip/node_modules/dexie-encrypted/dist/index.js ***!
+  \************************************************************************************************************************************************************************/
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+function _interopDefault(ex) {
+  return ex && _typeof(ex) === 'object' && 'default' in ex ? ex['default'] : ex;
+}
+
+var Dexie = _interopDefault(__webpack_require__(/*! dexie */ "dexie"));
+
+var nacl = _interopDefault(__webpack_require__(/*! tweetnacl */ "../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-8.zip/node_modules/tweetnacl/nacl-fast.js"));
+
+var Typeson = _interopDefault(__webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js"));
+
+var builtinTypes = _interopDefault(__webpack_require__(/*! typeson-registry/presets/builtin */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/builtin.js")); // Import some usable helper functions
+
+
+var override = Dexie.override;
+var _Promise = Dexie.Promise;
+var tableEncryptionOptions = {
+  DATA: 'NON_INDEXED_FIELDS',
+  NON_INDEXED_FIELDS: 'NON_INDEXED_FIELDS',
+  // DATA_AND_INDICES: 'DATA_AND_INDICES', // not implemented.
+  WHITELIST: 'WHITELIST',
+  BLACKLIST: 'BLACKLIST'
+};
+var cryptoOptions = tableEncryptionOptions;
+/* options example: 
+{
+	table1: cryptoOptions.NON_INDEXED_FIELDS,
+	table2: {
+		type: cryptoOptions.WHITELIST,
+		fields: ['harmlessData1', 'harmlessId']
+	},
+	table3: {
+		type: cryptoOptions.BLACKLIST,
+		fields: ['sensitiveField1', 'sensitiveField2']
+	}
+}
+*/
+
+var tson = new Typeson().register([builtinTypes]);
+
+function overrideParseStoresSpec(origFunc) {
+  return function (stores, dbSchema) {
+    stores._encryptionSettings = '++id';
+    origFunc.call(this, stores, dbSchema);
+  };
+}
+
+function compareArrays(a, b) {
+  if (a.length !== b.length) {
+    return false;
+  }
+
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+var encoder = new TextEncoder();
+var decoder = new TextDecoder();
+
+function encryptObject(key, object, nonce) {
+  nonce = nonce || nacl.randomBytes(nacl.secretbox.nonceLength);
+  var stringToEncrypt = tson.stringify(object);
+  var encoded = encoder.encode(stringToEncrypt);
+  var encrypted = nacl.secretbox(encoded, nonce, key);
+  var data = new Uint8Array(nonce.length + encrypted.length);
+  data.set(nonce);
+  data.set(encrypted, nonce.length);
+  return data;
+} // this prevents changing the shape of the object so
+// the underlying engine can optimize the hidden class
+
+
+function hideValue(input) {
+  switch (_typeof(input)) {
+    case 'number':
+      return 0;
+
+    case 'string':
+      return '';
+
+    case 'boolean':
+      return false;
+
+    case 'undefined':
+      return undefined;
+
+    case 'symbol':
+      return undefined;
+  }
+
+  return {};
+}
+
+function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
+  var keyPromise;
+
+  if (keyOrPromise.then) {
+    keyPromise = keyOrPromise;
+  } else if (keyOrPromise instanceof Uint8Array && keyOrPromise.length === 32) {
+    keyPromise = Dexie.Promise.resolve(keyOrPromise);
+  } else {
+    throw new Error('Dexie-encrypted requires a UInt8Array of length 32 for a encryption key.');
+  }
+
+  db.Version.prototype._parseStoresSpec = override(db.Version.prototype._parseStoresSpec, overrideParseStoresSpec);
+
+  if (db.verno > 0) {
+    // Make sure new tables are added if calling encrypt after defining versions.
+    try {
+      db.version(db.verno).stores({});
+    } catch (error) {
+      throw new Error('Dexie-encrypt: The call to encrypt() cannot be done on an open database');
+    }
+  }
+
+  function encryptWithRule(table, entity, rule) {
+    if (rule === undefined) {
+      return entity;
+    }
+
+    var toEncrypt = {};
+
+    if (rule.type === cryptoOptions.BLACKLIST) {
+      for (var i = 0; i < rule.fields.length; i++) {
+        toEncrypt[rule.fields[i]] = entity[rule.fields[i]];
+        entity[rule.fields[i]] = hideValue(entity[rule.fields[i]]);
+      }
+    } else {
+      var indices = table.schema.indexes.map(function (index) {
+        return index.name;
+      });
+      var whitelist = rule.type === cryptoOptions.WHITELIST ? rule.fields : [];
+
+      for (var _key in entity) {
+        if (_key !== table.schema.primKey.name && entity.hasOwnProperty(_key) && indices.includes(_key) === false && whitelist.includes(_key) === false) {
+          toEncrypt[_key] = entity[_key];
+          entity[_key] = hideValue(entity[_key]);
+        }
+      }
+    }
+
+    entity.__encryptedData = encryptObject(key, toEncrypt, nonceOverride);
+    return entity;
+  }
+
+  function decryptWithRule(entity, rule) {
+    if (rule === undefined) {
+      return entity;
+    }
+
+    if (entity && entity.__encryptedData) {
+      var nonce = entity.__encryptedData.slice(0, nacl.secretbox.nonceLength);
+
+      var message = entity.__encryptedData.slice(nacl.secretbox.nonceLength, entity.__encryptedData.length);
+
+      var rawDecrypted = nacl.secretbox.open(message, nonce, key);
+      var stringified = decoder.decode(rawDecrypted);
+      var decrypted = tson.parse(stringified);
+      var toReturn = {};
+
+      for (var k in entity) {
+        if (decrypted.hasOwnProperty(k)) {
+          toReturn[k] = decrypted[k];
+        } else if (entity.hasOwnProperty(k) && k !== '__encryptedData') {
+          toReturn[k] = entity[k];
+        }
+      }
+
+      return toReturn;
+    }
+
+    return entity;
+  }
+
+  var key;
+  db.on('ready', function () {
+    var encryptionSettings;
+
+    try {
+      encryptionSettings = db.table('_encryptionSettings');
+    } catch (error) {
+      throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
+    }
+
+    return keyPromise.then(function (receivedKey) {
+      if (receivedKey instanceof Uint8Array && receivedKey.length === 32) {
+        key = receivedKey;
+      } else {
+        throw new Error('Dexie-encrypted requires a UInt8Array of length 32 for a encryption key.');
+      }
+    }).then(function () {
+      return encryptionSettings.toCollection().last().then(function (oldSettings) {
+        var changeDetectionObj = oldSettings ? oldSettings['__key_change_detection'] : null;
+        var onKeyChangeResult;
+
+        var keyChangePromise = _Promise.resolve();
+
+        if (changeDetectionObj) {
+          var nonce = changeDetectionObj.slice(0, nacl.secretbox.nonceLength);
+          var message = changeDetectionObj.slice(nacl.secretbox.nonceLength, changeDetectionObj.length);
+          var rawDecrypted = nacl.secretbox.open(message, nonce, key);
+
+          if (!rawDecrypted) {
+            // The key has changed. Let's call the handler
+            onKeyChangeResult = onKeyChange(db);
+            keyChangePromise = onKeyChangeResult.then ? onKeyChangeResult : new _Promise(function (resolve) {
+              resolve(onKeyChangeResult);
+            });
+          }
+        }
+
+        return keyChangePromise.then(function () {
+          return _Promise.all(db.tables.map(function (table) {
+            var oldSetting = oldSettings ? oldSettings[table.name] : undefined;
+            var newSetting = cryptoSettings[table.name];
+
+            function setupHooks() {
+              if (newSetting === undefined) {
+                return;
+              }
+
+              table.hook('creating', function (primKey, obj) {
+                var preservedValue = _objectSpread({}, obj);
+
+                encryptWithRule(table, obj, newSetting);
+
+                this.onsuccess = function () {
+                  delete obj.__encryptedData;
+                  Object.assign(obj, preservedValue);
+                };
+
+                this.onerror = function () {
+                  delete obj.__encryptedData;
+                  Object.assign(obj, preservedValue);
+                };
+              });
+              table.hook('updating', function (modifications) {
+                var encrypted = encryptWithRule(table, _objectSpread({}, this.value), newSetting);
+                return encrypted;
+              });
+              table.hook('reading', function (obj) {
+                return decryptWithRule(obj, newSetting);
+              });
+            }
+
+            if (oldSetting === newSetting) {
+              // no upgrade needed.
+              setupHooks();
+              return;
+            }
+
+            if (oldSetting === undefined || newSetting === undefined) ;else if (typeof oldSetting !== 'string' && typeof newSetting !== 'string') {
+              // both non-strings. Figure out if they're the same.
+              if (newSetting.type === oldSetting.type) {
+                if (compareArrays(newSetting.fields, oldSetting.fields)) {
+                  // no upgrade needed.
+                  setupHooks();
+                  return;
+                }
+              }
+            }
+            return table.toCollection().modify(function (entity, ref) {
+              var decrypted = decryptWithRule(entity, oldSetting);
+              ref.value = encryptWithRule(table, decrypted, newSetting);
+              return true;
+            }).then(setupHooks);
+          }));
+        });
+      }).then(function () {
+        return encryptionSettings.clear();
+      }).then(function () {
+        return encryptionSettings.put(_objectSpread({
+          __key_change_detection: encryptObject(key, [1, 2, 3, 4, 5], new Uint8Array(24))
+        }, cryptoSettings));
+      })["catch"](function (error) {
+        if (error.name === 'NotFoundError') {
+          throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
+        } else {
+          return _Promise.reject(error);
+        }
+      });
+    });
+  });
+}
+
+function clearAllTables(db) {
+  return _Promise.all(db.tables.map(function (table) {
+    return table.clear();
+  }));
+}
+
+function clearEncryptedTables(_x) {
+  return _clearEncryptedTables.apply(this, arguments);
+}
+
+function _clearEncryptedTables() {
+  _clearEncryptedTables = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(db) {
+    var encryptionSettings, promises;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.prev = 0;
+            _context2.next = 3;
+            return db.table('_encryptionSettings').toCollection().last();
+
+          case 3:
+            encryptionSettings = _context2.sent;
+            _context2.next = 9;
+            break;
+
+          case 6:
+            _context2.prev = 6;
+            _context2.t0 = _context2["catch"](0);
+            throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
+
+          case 9:
+            promises = Object.keys(encryptionSettings).map( /*#__PURE__*/function () {
+              var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(key) {
+                var encryptionSettingValue;
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                  while (1) {
+                    switch (_context.prev = _context.next) {
+                      case 0:
+                        encryptionSettingValue = encryptionSettings[key];
+
+                        if (!tableEncryptionOptions[encryptionSettingValue]) {
+                          _context.next = 4;
+                          break;
+                        }
+
+                        _context.next = 4;
+                        return db.table(key).clear();
+
+                      case 4:
+                      case "end":
+                        return _context.stop();
+                    }
+                  }
+                }, _callee);
+              }));
+
+              return function (_x2) {
+                return _ref.apply(this, arguments);
+              };
+            }());
+            return _context2.abrupt("return", _Promise.all(promises));
+
+          case 11:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[0, 6]]);
+  }));
+  return _clearEncryptedTables.apply(this, arguments);
+}
+
+Object.assign(encrypt, cryptoOptions, {
+  clearAllTables: clearAllTables,
+  clearEncryptedTables: clearEncryptedTables
+});
+exports.clearAllTables = clearAllTables;
+exports.clearEncryptedTables = clearEncryptedTables;
+exports.cryptoOptions = cryptoOptions;
+exports["default"] = encrypt;
+exports.tableEncryptionOptions = tableEncryptionOptions;
+}();
+/******/ 	return __webpack_exports__;
 /******/ })()
 ;
 });
