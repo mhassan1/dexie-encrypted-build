@@ -1,6 +1,6 @@
 {
   "name": "dexie-encrypted-build",
-  "version": "1.2.201",
+  "version": "1.2.202",
   "description": "ES5 build of dexie-encrypted",
   "main": "dist/dexie-encrypted.js",
   "license": "MIT",
@@ -26,9 +26,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "^9.1.2",
     "webpack": "^5.76.2",
     "webpack-cli": "^4.2.0"
+  },
+  "resolutions": {
+    "semver@^6.0.0": "npm:@nicolo-ribaudo/semver-v6@^6.3.3"
   },
   "peerDependencies": {
     "dexie": "^2.0.4 || ^3.0.0"

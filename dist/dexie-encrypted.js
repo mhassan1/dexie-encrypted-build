@@ -18,43 +18,35 @@ return /******/ (function() { // webpackBootstrap
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 (function (nacl) {
-  'use strict'; // Ported in 2014 by Dmitry Chestnykh and Devi Mandiri.
+  'use strict';
+
+  // Ported in 2014 by Dmitry Chestnykh and Devi Mandiri.
   // Public domain.
   //
   // Implementation derived from TweetNaCl version 20140427.
   // See for details: http://tweetnacl.cr.yp.to/
-
   var gf = function gf(init) {
     var i,
-        r = new Float64Array(16);
-    if (init) for (i = 0; i < init.length; i++) {
-      r[i] = init[i];
-    }
+      r = new Float64Array(16);
+    if (init) for (i = 0; i < init.length; i++) r[i] = init[i];
     return r;
-  }; //  Pluggable, initialized in high-level API below.
-
-
-  var randombytes = function randombytes()
-  /* x, n */
-  {
-    throw new Error('no PRNG');
   };
 
+  //  Pluggable, initialized in high-level API below.
+  var randombytes = function randombytes( /* x, n */) {
+    throw new Error('no PRNG');
+  };
   var _0 = new Uint8Array(16);
-
   var _9 = new Uint8Array(32);
-
   _9[0] = 9;
-
   var gf0 = gf(),
-      gf1 = gf([1]),
-      _121665 = gf([0xdb41, 1]),
-      D = gf([0x78a3, 0x1359, 0x4dca, 0x75eb, 0xd8ab, 0x4141, 0x0a4d, 0x0070, 0xe898, 0x7779, 0x4079, 0x8cc7, 0xfe73, 0x2b6f, 0x6cee, 0x5203]),
-      D2 = gf([0xf159, 0x26b2, 0x9b94, 0xebd6, 0xb156, 0x8283, 0x149a, 0x00e0, 0xd130, 0xeef3, 0x80f2, 0x198e, 0xfce7, 0x56df, 0xd9dc, 0x2406]),
-      X = gf([0xd51a, 0x8f25, 0x2d60, 0xc956, 0xa7b2, 0x9525, 0xc760, 0x692c, 0xdc5c, 0xfdd6, 0xe231, 0xc0a4, 0x53fe, 0xcd6e, 0x36d3, 0x2169]),
-      Y = gf([0x6658, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666]),
-      I = gf([0xa0b0, 0x4a0e, 0x1b27, 0xc4ee, 0xe478, 0xad2f, 0x1806, 0x2f43, 0xd7a7, 0x3dfb, 0x0099, 0x2b4d, 0xdf0b, 0x4fc1, 0x2480, 0x2b83]);
-
+    gf1 = gf([1]),
+    _121665 = gf([0xdb41, 1]),
+    D = gf([0x78a3, 0x1359, 0x4dca, 0x75eb, 0xd8ab, 0x4141, 0x0a4d, 0x0070, 0xe898, 0x7779, 0x4079, 0x8cc7, 0xfe73, 0x2b6f, 0x6cee, 0x5203]),
+    D2 = gf([0xf159, 0x26b2, 0x9b94, 0xebd6, 0xb156, 0x8283, 0x149a, 0x00e0, 0xd130, 0xeef3, 0x80f2, 0x198e, 0xfce7, 0x56df, 0xd9dc, 0x2406]),
+    X = gf([0xd51a, 0x8f25, 0x2d60, 0xc956, 0xa7b2, 0x9525, 0xc760, 0x692c, 0xdc5c, 0xfdd6, 0xe231, 0xc0a4, 0x53fe, 0xcd6e, 0x36d3, 0x2169]),
+    Y = gf([0x6658, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666, 0x6666]),
+    I = gf([0xa0b0, 0x4a0e, 0x1b27, 0xc4ee, 0xe478, 0xad2f, 0x1806, 0x2f43, 0xd7a7, 0x3dfb, 0x0099, 0x2b4d, 0xdf0b, 0x4fc1, 0x2480, 0x2b83]);
   function ts64(x, i, h, l) {
     x[i] = h >> 24 & 0xff;
     x[i + 1] = h >> 16 & 0xff;
@@ -65,61 +57,52 @@ return /******/ (function() { // webpackBootstrap
     x[i + 6] = l >> 8 & 0xff;
     x[i + 7] = l & 0xff;
   }
-
   function vn(x, xi, y, yi, n) {
     var i,
-        d = 0;
-
-    for (i = 0; i < n; i++) {
-      d |= x[xi + i] ^ y[yi + i];
-    }
-
+      d = 0;
+    for (i = 0; i < n; i++) d |= x[xi + i] ^ y[yi + i];
     return (1 & d - 1 >>> 8) - 1;
   }
-
   function crypto_verify_16(x, xi, y, yi) {
     return vn(x, xi, y, yi, 16);
   }
-
   function crypto_verify_32(x, xi, y, yi) {
     return vn(x, xi, y, yi, 32);
   }
-
   function core_salsa20(o, p, k, c) {
     var j0 = c[0] & 0xff | (c[1] & 0xff) << 8 | (c[2] & 0xff) << 16 | (c[3] & 0xff) << 24,
-        j1 = k[0] & 0xff | (k[1] & 0xff) << 8 | (k[2] & 0xff) << 16 | (k[3] & 0xff) << 24,
-        j2 = k[4] & 0xff | (k[5] & 0xff) << 8 | (k[6] & 0xff) << 16 | (k[7] & 0xff) << 24,
-        j3 = k[8] & 0xff | (k[9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
-        j4 = k[12] & 0xff | (k[13] & 0xff) << 8 | (k[14] & 0xff) << 16 | (k[15] & 0xff) << 24,
-        j5 = c[4] & 0xff | (c[5] & 0xff) << 8 | (c[6] & 0xff) << 16 | (c[7] & 0xff) << 24,
-        j6 = p[0] & 0xff | (p[1] & 0xff) << 8 | (p[2] & 0xff) << 16 | (p[3] & 0xff) << 24,
-        j7 = p[4] & 0xff | (p[5] & 0xff) << 8 | (p[6] & 0xff) << 16 | (p[7] & 0xff) << 24,
-        j8 = p[8] & 0xff | (p[9] & 0xff) << 8 | (p[10] & 0xff) << 16 | (p[11] & 0xff) << 24,
-        j9 = p[12] & 0xff | (p[13] & 0xff) << 8 | (p[14] & 0xff) << 16 | (p[15] & 0xff) << 24,
-        j10 = c[8] & 0xff | (c[9] & 0xff) << 8 | (c[10] & 0xff) << 16 | (c[11] & 0xff) << 24,
-        j11 = k[16] & 0xff | (k[17] & 0xff) << 8 | (k[18] & 0xff) << 16 | (k[19] & 0xff) << 24,
-        j12 = k[20] & 0xff | (k[21] & 0xff) << 8 | (k[22] & 0xff) << 16 | (k[23] & 0xff) << 24,
-        j13 = k[24] & 0xff | (k[25] & 0xff) << 8 | (k[26] & 0xff) << 16 | (k[27] & 0xff) << 24,
-        j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
-        j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24;
+      j1 = k[0] & 0xff | (k[1] & 0xff) << 8 | (k[2] & 0xff) << 16 | (k[3] & 0xff) << 24,
+      j2 = k[4] & 0xff | (k[5] & 0xff) << 8 | (k[6] & 0xff) << 16 | (k[7] & 0xff) << 24,
+      j3 = k[8] & 0xff | (k[9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
+      j4 = k[12] & 0xff | (k[13] & 0xff) << 8 | (k[14] & 0xff) << 16 | (k[15] & 0xff) << 24,
+      j5 = c[4] & 0xff | (c[5] & 0xff) << 8 | (c[6] & 0xff) << 16 | (c[7] & 0xff) << 24,
+      j6 = p[0] & 0xff | (p[1] & 0xff) << 8 | (p[2] & 0xff) << 16 | (p[3] & 0xff) << 24,
+      j7 = p[4] & 0xff | (p[5] & 0xff) << 8 | (p[6] & 0xff) << 16 | (p[7] & 0xff) << 24,
+      j8 = p[8] & 0xff | (p[9] & 0xff) << 8 | (p[10] & 0xff) << 16 | (p[11] & 0xff) << 24,
+      j9 = p[12] & 0xff | (p[13] & 0xff) << 8 | (p[14] & 0xff) << 16 | (p[15] & 0xff) << 24,
+      j10 = c[8] & 0xff | (c[9] & 0xff) << 8 | (c[10] & 0xff) << 16 | (c[11] & 0xff) << 24,
+      j11 = k[16] & 0xff | (k[17] & 0xff) << 8 | (k[18] & 0xff) << 16 | (k[19] & 0xff) << 24,
+      j12 = k[20] & 0xff | (k[21] & 0xff) << 8 | (k[22] & 0xff) << 16 | (k[23] & 0xff) << 24,
+      j13 = k[24] & 0xff | (k[25] & 0xff) << 8 | (k[26] & 0xff) << 16 | (k[27] & 0xff) << 24,
+      j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
+      j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24;
     var x0 = j0,
-        x1 = j1,
-        x2 = j2,
-        x3 = j3,
-        x4 = j4,
-        x5 = j5,
-        x6 = j6,
-        x7 = j7,
-        x8 = j8,
-        x9 = j9,
-        x10 = j10,
-        x11 = j11,
-        x12 = j12,
-        x13 = j13,
-        x14 = j14,
-        x15 = j15,
-        u;
-
+      x1 = j1,
+      x2 = j2,
+      x3 = j3,
+      x4 = j4,
+      x5 = j5,
+      x6 = j6,
+      x7 = j7,
+      x8 = j8,
+      x9 = j9,
+      x10 = j10,
+      x11 = j11,
+      x12 = j12,
+      x13 = j13,
+      x14 = j14,
+      x15 = j15,
+      u;
     for (var i = 0; i < 20; i += 2) {
       u = x0 + x12 | 0;
       x4 ^= u << 7 | u >>> 32 - 7;
@@ -186,7 +169,6 @@ return /******/ (function() { // webpackBootstrap
       u = x14 + x13 | 0;
       x15 ^= u << 18 | u >>> 32 - 18;
     }
-
     x0 = x0 + j0 | 0;
     x1 = x1 + j1 | 0;
     x2 = x2 + j2 | 0;
@@ -268,42 +250,40 @@ return /******/ (function() { // webpackBootstrap
     o[62] = x15 >>> 16 & 0xff;
     o[63] = x15 >>> 24 & 0xff;
   }
-
   function core_hsalsa20(o, p, k, c) {
     var j0 = c[0] & 0xff | (c[1] & 0xff) << 8 | (c[2] & 0xff) << 16 | (c[3] & 0xff) << 24,
-        j1 = k[0] & 0xff | (k[1] & 0xff) << 8 | (k[2] & 0xff) << 16 | (k[3] & 0xff) << 24,
-        j2 = k[4] & 0xff | (k[5] & 0xff) << 8 | (k[6] & 0xff) << 16 | (k[7] & 0xff) << 24,
-        j3 = k[8] & 0xff | (k[9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
-        j4 = k[12] & 0xff | (k[13] & 0xff) << 8 | (k[14] & 0xff) << 16 | (k[15] & 0xff) << 24,
-        j5 = c[4] & 0xff | (c[5] & 0xff) << 8 | (c[6] & 0xff) << 16 | (c[7] & 0xff) << 24,
-        j6 = p[0] & 0xff | (p[1] & 0xff) << 8 | (p[2] & 0xff) << 16 | (p[3] & 0xff) << 24,
-        j7 = p[4] & 0xff | (p[5] & 0xff) << 8 | (p[6] & 0xff) << 16 | (p[7] & 0xff) << 24,
-        j8 = p[8] & 0xff | (p[9] & 0xff) << 8 | (p[10] & 0xff) << 16 | (p[11] & 0xff) << 24,
-        j9 = p[12] & 0xff | (p[13] & 0xff) << 8 | (p[14] & 0xff) << 16 | (p[15] & 0xff) << 24,
-        j10 = c[8] & 0xff | (c[9] & 0xff) << 8 | (c[10] & 0xff) << 16 | (c[11] & 0xff) << 24,
-        j11 = k[16] & 0xff | (k[17] & 0xff) << 8 | (k[18] & 0xff) << 16 | (k[19] & 0xff) << 24,
-        j12 = k[20] & 0xff | (k[21] & 0xff) << 8 | (k[22] & 0xff) << 16 | (k[23] & 0xff) << 24,
-        j13 = k[24] & 0xff | (k[25] & 0xff) << 8 | (k[26] & 0xff) << 16 | (k[27] & 0xff) << 24,
-        j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
-        j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24;
+      j1 = k[0] & 0xff | (k[1] & 0xff) << 8 | (k[2] & 0xff) << 16 | (k[3] & 0xff) << 24,
+      j2 = k[4] & 0xff | (k[5] & 0xff) << 8 | (k[6] & 0xff) << 16 | (k[7] & 0xff) << 24,
+      j3 = k[8] & 0xff | (k[9] & 0xff) << 8 | (k[10] & 0xff) << 16 | (k[11] & 0xff) << 24,
+      j4 = k[12] & 0xff | (k[13] & 0xff) << 8 | (k[14] & 0xff) << 16 | (k[15] & 0xff) << 24,
+      j5 = c[4] & 0xff | (c[5] & 0xff) << 8 | (c[6] & 0xff) << 16 | (c[7] & 0xff) << 24,
+      j6 = p[0] & 0xff | (p[1] & 0xff) << 8 | (p[2] & 0xff) << 16 | (p[3] & 0xff) << 24,
+      j7 = p[4] & 0xff | (p[5] & 0xff) << 8 | (p[6] & 0xff) << 16 | (p[7] & 0xff) << 24,
+      j8 = p[8] & 0xff | (p[9] & 0xff) << 8 | (p[10] & 0xff) << 16 | (p[11] & 0xff) << 24,
+      j9 = p[12] & 0xff | (p[13] & 0xff) << 8 | (p[14] & 0xff) << 16 | (p[15] & 0xff) << 24,
+      j10 = c[8] & 0xff | (c[9] & 0xff) << 8 | (c[10] & 0xff) << 16 | (c[11] & 0xff) << 24,
+      j11 = k[16] & 0xff | (k[17] & 0xff) << 8 | (k[18] & 0xff) << 16 | (k[19] & 0xff) << 24,
+      j12 = k[20] & 0xff | (k[21] & 0xff) << 8 | (k[22] & 0xff) << 16 | (k[23] & 0xff) << 24,
+      j13 = k[24] & 0xff | (k[25] & 0xff) << 8 | (k[26] & 0xff) << 16 | (k[27] & 0xff) << 24,
+      j14 = k[28] & 0xff | (k[29] & 0xff) << 8 | (k[30] & 0xff) << 16 | (k[31] & 0xff) << 24,
+      j15 = c[12] & 0xff | (c[13] & 0xff) << 8 | (c[14] & 0xff) << 16 | (c[15] & 0xff) << 24;
     var x0 = j0,
-        x1 = j1,
-        x2 = j2,
-        x3 = j3,
-        x4 = j4,
-        x5 = j5,
-        x6 = j6,
-        x7 = j7,
-        x8 = j8,
-        x9 = j9,
-        x10 = j10,
-        x11 = j11,
-        x12 = j12,
-        x13 = j13,
-        x14 = j14,
-        x15 = j15,
-        u;
-
+      x1 = j1,
+      x2 = j2,
+      x3 = j3,
+      x4 = j4,
+      x5 = j5,
+      x6 = j6,
+      x7 = j7,
+      x8 = j8,
+      x9 = j9,
+      x10 = j10,
+      x11 = j11,
+      x12 = j12,
+      x13 = j13,
+      x14 = j14,
+      x15 = j15,
+      u;
     for (var i = 0; i < 20; i += 2) {
       u = x0 + x12 | 0;
       x4 ^= u << 7 | u >>> 32 - 7;
@@ -370,7 +350,6 @@ return /******/ (function() { // webpackBootstrap
       u = x14 + x13 | 0;
       x15 ^= u << 18 | u >>> 32 - 18;
     }
-
     o[0] = x0 >>> 0 & 0xff;
     o[1] = x0 >>> 8 & 0xff;
     o[2] = x0 >>> 16 & 0xff;
@@ -404,132 +383,83 @@ return /******/ (function() { // webpackBootstrap
     o[30] = x9 >>> 16 & 0xff;
     o[31] = x9 >>> 24 & 0xff;
   }
-
   function crypto_core_salsa20(out, inp, k, c) {
     core_salsa20(out, inp, k, c);
   }
-
   function crypto_core_hsalsa20(out, inp, k, c) {
     core_hsalsa20(out, inp, k, c);
   }
-
-  var sigma = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107]); // "expand 32-byte k"
+  var sigma = new Uint8Array([101, 120, 112, 97, 110, 100, 32, 51, 50, 45, 98, 121, 116, 101, 32, 107]);
+  // "expand 32-byte k"
 
   function crypto_stream_salsa20_xor(c, cpos, m, mpos, b, n, k) {
     var z = new Uint8Array(16),
-        x = new Uint8Array(64);
+      x = new Uint8Array(64);
     var u, i;
-
-    for (i = 0; i < 16; i++) {
-      z[i] = 0;
-    }
-
-    for (i = 0; i < 8; i++) {
-      z[i] = n[i];
-    }
-
+    for (i = 0; i < 16; i++) z[i] = 0;
+    for (i = 0; i < 8; i++) z[i] = n[i];
     while (b >= 64) {
       crypto_core_salsa20(x, z, k, sigma);
-
-      for (i = 0; i < 64; i++) {
-        c[cpos + i] = m[mpos + i] ^ x[i];
-      }
-
+      for (i = 0; i < 64; i++) c[cpos + i] = m[mpos + i] ^ x[i];
       u = 1;
-
       for (i = 8; i < 16; i++) {
         u = u + (z[i] & 0xff) | 0;
         z[i] = u & 0xff;
         u >>>= 8;
       }
-
       b -= 64;
       cpos += 64;
       mpos += 64;
     }
-
     if (b > 0) {
       crypto_core_salsa20(x, z, k, sigma);
-
-      for (i = 0; i < b; i++) {
-        c[cpos + i] = m[mpos + i] ^ x[i];
-      }
+      for (i = 0; i < b; i++) c[cpos + i] = m[mpos + i] ^ x[i];
     }
-
     return 0;
   }
-
   function crypto_stream_salsa20(c, cpos, b, n, k) {
     var z = new Uint8Array(16),
-        x = new Uint8Array(64);
+      x = new Uint8Array(64);
     var u, i;
-
-    for (i = 0; i < 16; i++) {
-      z[i] = 0;
-    }
-
-    for (i = 0; i < 8; i++) {
-      z[i] = n[i];
-    }
-
+    for (i = 0; i < 16; i++) z[i] = 0;
+    for (i = 0; i < 8; i++) z[i] = n[i];
     while (b >= 64) {
       crypto_core_salsa20(x, z, k, sigma);
-
-      for (i = 0; i < 64; i++) {
-        c[cpos + i] = x[i];
-      }
-
+      for (i = 0; i < 64; i++) c[cpos + i] = x[i];
       u = 1;
-
       for (i = 8; i < 16; i++) {
         u = u + (z[i] & 0xff) | 0;
         z[i] = u & 0xff;
         u >>>= 8;
       }
-
       b -= 64;
       cpos += 64;
     }
-
     if (b > 0) {
       crypto_core_salsa20(x, z, k, sigma);
-
-      for (i = 0; i < b; i++) {
-        c[cpos + i] = x[i];
-      }
+      for (i = 0; i < b; i++) c[cpos + i] = x[i];
     }
-
     return 0;
   }
-
   function crypto_stream(c, cpos, d, n, k) {
     var s = new Uint8Array(32);
     crypto_core_hsalsa20(s, n, k, sigma);
     var sn = new Uint8Array(8);
-
-    for (var i = 0; i < 8; i++) {
-      sn[i] = n[i + 16];
-    }
-
+    for (var i = 0; i < 8; i++) sn[i] = n[i + 16];
     return crypto_stream_salsa20(c, cpos, d, sn, s);
   }
-
   function crypto_stream_xor(c, cpos, m, mpos, d, n, k) {
     var s = new Uint8Array(32);
     crypto_core_hsalsa20(s, n, k, sigma);
     var sn = new Uint8Array(8);
-
-    for (var i = 0; i < 8; i++) {
-      sn[i] = n[i + 16];
-    }
-
+    for (var i = 0; i < 8; i++) sn[i] = n[i + 16];
     return crypto_stream_salsa20_xor(c, cpos, m, mpos, d, sn, s);
   }
+
   /*
   * Port of Andrew Moon's Poly1305-donna-16. Public domain.
   * https://github.com/floodyberry/poly1305-donna
   */
-
 
   var poly1305 = function poly1305(key) {
     this.buffer = new Uint8Array(16);
@@ -566,32 +496,30 @@ return /******/ (function() { // webpackBootstrap
     this.pad[6] = key[28] & 0xff | (key[29] & 0xff) << 8;
     this.pad[7] = key[30] & 0xff | (key[31] & 0xff) << 8;
   };
-
   poly1305.prototype.blocks = function (m, mpos, bytes) {
     var hibit = this.fin ? 0 : 1 << 11;
     var t0, t1, t2, t3, t4, t5, t6, t7, c;
     var d0, d1, d2, d3, d4, d5, d6, d7, d8, d9;
     var h0 = this.h[0],
-        h1 = this.h[1],
-        h2 = this.h[2],
-        h3 = this.h[3],
-        h4 = this.h[4],
-        h5 = this.h[5],
-        h6 = this.h[6],
-        h7 = this.h[7],
-        h8 = this.h[8],
-        h9 = this.h[9];
+      h1 = this.h[1],
+      h2 = this.h[2],
+      h3 = this.h[3],
+      h4 = this.h[4],
+      h5 = this.h[5],
+      h6 = this.h[6],
+      h7 = this.h[7],
+      h8 = this.h[8],
+      h9 = this.h[9];
     var r0 = this.r[0],
-        r1 = this.r[1],
-        r2 = this.r[2],
-        r3 = this.r[3],
-        r4 = this.r[4],
-        r5 = this.r[5],
-        r6 = this.r[6],
-        r7 = this.r[7],
-        r8 = this.r[8],
-        r9 = this.r[9];
-
+      r1 = this.r[1],
+      r2 = this.r[2],
+      r3 = this.r[3],
+      r4 = this.r[4],
+      r5 = this.r[5],
+      r6 = this.r[6],
+      r7 = this.r[7],
+      r8 = this.r[8],
+      r9 = this.r[9];
     while (bytes >= 16) {
       t0 = m[mpos + 0] & 0xff | (m[mpos + 1] & 0xff) << 8;
       h0 += t0 & 0x1fff;
@@ -780,7 +708,6 @@ return /******/ (function() { // webpackBootstrap
       mpos += 16;
       bytes -= 16;
     }
-
     this.h[0] = h0;
     this.h[1] = h1;
     this.h[2] = h2;
@@ -792,32 +719,23 @@ return /******/ (function() { // webpackBootstrap
     this.h[8] = h8;
     this.h[9] = h9;
   };
-
   poly1305.prototype.finish = function (mac, macpos) {
     var g = new Uint16Array(10);
     var c, mask, f, i;
-
     if (this.leftover) {
       i = this.leftover;
       this.buffer[i++] = 1;
-
-      for (; i < 16; i++) {
-        this.buffer[i] = 0;
-      }
-
+      for (; i < 16; i++) this.buffer[i] = 0;
       this.fin = 1;
       this.blocks(this.buffer, 0, 16);
     }
-
     c = this.h[1] >>> 13;
     this.h[1] &= 0x1fff;
-
     for (i = 2; i < 10; i++) {
       this.h[i] += c;
       c = this.h[i] >>> 13;
       this.h[i] &= 0x1fff;
     }
-
     this.h[0] += c * 5;
     c = this.h[0] >>> 13;
     this.h[0] &= 0x1fff;
@@ -828,26 +746,16 @@ return /******/ (function() { // webpackBootstrap
     g[0] = this.h[0] + 5;
     c = g[0] >>> 13;
     g[0] &= 0x1fff;
-
     for (i = 1; i < 10; i++) {
       g[i] = this.h[i] + c;
       c = g[i] >>> 13;
       g[i] &= 0x1fff;
     }
-
     g[9] -= 1 << 13;
     mask = (c ^ 1) - 1;
-
-    for (i = 0; i < 10; i++) {
-      g[i] &= mask;
-    }
-
+    for (i = 0; i < 10; i++) g[i] &= mask;
     mask = ~mask;
-
-    for (i = 0; i < 10; i++) {
-      this.h[i] = this.h[i] & mask | g[i];
-    }
-
+    for (i = 0; i < 10; i++) this.h[i] = this.h[i] & mask | g[i];
     this.h[0] = (this.h[0] | this.h[1] << 13) & 0xffff;
     this.h[1] = (this.h[1] >>> 3 | this.h[2] << 10) & 0xffff;
     this.h[2] = (this.h[2] >>> 6 | this.h[3] << 7) & 0xffff;
@@ -858,12 +766,10 @@ return /******/ (function() { // webpackBootstrap
     this.h[7] = (this.h[8] >>> 8 | this.h[9] << 5) & 0xffff;
     f = this.h[0] + this.pad[0];
     this.h[0] = f & 0xffff;
-
     for (i = 1; i < 8; i++) {
       f = (this.h[i] + this.pad[i] | 0) + (f >>> 16) | 0;
       this.h[i] = f & 0xffff;
     }
-
     mac[macpos + 0] = this.h[0] >>> 0 & 0xff;
     mac[macpos + 1] = this.h[0] >>> 8 & 0xff;
     mac[macpos + 2] = this.h[1] >>> 0 & 0xff;
@@ -881,18 +787,12 @@ return /******/ (function() { // webpackBootstrap
     mac[macpos + 14] = this.h[7] >>> 0 & 0xff;
     mac[macpos + 15] = this.h[7] >>> 8 & 0xff;
   };
-
   poly1305.prototype.update = function (m, mpos, bytes) {
     var i, want;
-
     if (this.leftover) {
       want = 16 - this.leftover;
       if (want > bytes) want = bytes;
-
-      for (i = 0; i < want; i++) {
-        this.buffer[this.leftover + i] = m[mpos + i];
-      }
-
+      for (i = 0; i < want; i++) this.buffer[this.leftover + i] = m[mpos + i];
       bytes -= want;
       mpos += want;
       this.leftover += want;
@@ -900,49 +800,36 @@ return /******/ (function() { // webpackBootstrap
       this.blocks(this.buffer, 0, 16);
       this.leftover = 0;
     }
-
     if (bytes >= 16) {
       want = bytes - bytes % 16;
       this.blocks(m, mpos, want);
       mpos += want;
       bytes -= want;
     }
-
     if (bytes) {
-      for (i = 0; i < bytes; i++) {
-        this.buffer[this.leftover + i] = m[mpos + i];
-      }
-
+      for (i = 0; i < bytes; i++) this.buffer[this.leftover + i] = m[mpos + i];
       this.leftover += bytes;
     }
   };
-
   function crypto_onetimeauth(out, outpos, m, mpos, n, k) {
     var s = new poly1305(k);
     s.update(m, mpos, n);
     s.finish(out, outpos);
     return 0;
   }
-
   function crypto_onetimeauth_verify(h, hpos, m, mpos, n, k) {
     var x = new Uint8Array(16);
     crypto_onetimeauth(x, 0, m, mpos, n, k);
     return crypto_verify_16(h, hpos, x, 0);
   }
-
   function crypto_secretbox(c, m, d, n, k) {
     var i;
     if (d < 32) return -1;
     crypto_stream_xor(c, 0, m, 0, d, n, k);
     crypto_onetimeauth(c, 16, c, 32, d - 32, c);
-
-    for (i = 0; i < 16; i++) {
-      c[i] = 0;
-    }
-
+    for (i = 0; i < 16; i++) c[i] = 0;
     return 0;
   }
-
   function crypto_secretbox_open(m, c, d, n, k) {
     var i;
     var x = new Uint8Array(32);
@@ -950,166 +837,130 @@ return /******/ (function() { // webpackBootstrap
     crypto_stream(x, 0, 32, n, k);
     if (crypto_onetimeauth_verify(c, 16, c, 32, d - 32, x) !== 0) return -1;
     crypto_stream_xor(m, 0, c, 0, d, n, k);
-
-    for (i = 0; i < 32; i++) {
-      m[i] = 0;
-    }
-
+    for (i = 0; i < 32; i++) m[i] = 0;
     return 0;
   }
-
   function set25519(r, a) {
     var i;
-
-    for (i = 0; i < 16; i++) {
-      r[i] = a[i] | 0;
-    }
+    for (i = 0; i < 16; i++) r[i] = a[i] | 0;
   }
-
   function car25519(o) {
     var i,
-        v,
-        c = 1;
-
+      v,
+      c = 1;
     for (i = 0; i < 16; i++) {
       v = o[i] + c + 65535;
       c = Math.floor(v / 65536);
       o[i] = v - c * 65536;
     }
-
     o[0] += c - 1 + 37 * (c - 1);
   }
-
   function sel25519(p, q, b) {
     var t,
-        c = ~(b - 1);
-
+      c = ~(b - 1);
     for (var i = 0; i < 16; i++) {
       t = c & (p[i] ^ q[i]);
       p[i] ^= t;
       q[i] ^= t;
     }
   }
-
   function pack25519(o, n) {
     var i, j, b;
     var m = gf(),
-        t = gf();
-
-    for (i = 0; i < 16; i++) {
-      t[i] = n[i];
-    }
-
+      t = gf();
+    for (i = 0; i < 16; i++) t[i] = n[i];
     car25519(t);
     car25519(t);
     car25519(t);
-
     for (j = 0; j < 2; j++) {
       m[0] = t[0] - 0xffed;
-
       for (i = 1; i < 15; i++) {
         m[i] = t[i] - 0xffff - (m[i - 1] >> 16 & 1);
         m[i - 1] &= 0xffff;
       }
-
       m[15] = t[15] - 0x7fff - (m[14] >> 16 & 1);
       b = m[15] >> 16 & 1;
       m[14] &= 0xffff;
       sel25519(t, m, 1 - b);
     }
-
     for (i = 0; i < 16; i++) {
       o[2 * i] = t[i] & 0xff;
       o[2 * i + 1] = t[i] >> 8;
     }
   }
-
   function neq25519(a, b) {
     var c = new Uint8Array(32),
-        d = new Uint8Array(32);
+      d = new Uint8Array(32);
     pack25519(c, a);
     pack25519(d, b);
     return crypto_verify_32(c, 0, d, 0);
   }
-
   function par25519(a) {
     var d = new Uint8Array(32);
     pack25519(d, a);
     return d[0] & 1;
   }
-
   function unpack25519(o, n) {
     var i;
-
-    for (i = 0; i < 16; i++) {
-      o[i] = n[2 * i] + (n[2 * i + 1] << 8);
-    }
-
+    for (i = 0; i < 16; i++) o[i] = n[2 * i] + (n[2 * i + 1] << 8);
     o[15] &= 0x7fff;
   }
-
   function A(o, a, b) {
-    for (var i = 0; i < 16; i++) {
-      o[i] = a[i] + b[i];
-    }
+    for (var i = 0; i < 16; i++) o[i] = a[i] + b[i];
   }
-
   function Z(o, a, b) {
-    for (var i = 0; i < 16; i++) {
-      o[i] = a[i] - b[i];
-    }
+    for (var i = 0; i < 16; i++) o[i] = a[i] - b[i];
   }
-
   function M(o, a, b) {
     var v,
-        c,
-        t0 = 0,
-        t1 = 0,
-        t2 = 0,
-        t3 = 0,
-        t4 = 0,
-        t5 = 0,
-        t6 = 0,
-        t7 = 0,
-        t8 = 0,
-        t9 = 0,
-        t10 = 0,
-        t11 = 0,
-        t12 = 0,
-        t13 = 0,
-        t14 = 0,
-        t15 = 0,
-        t16 = 0,
-        t17 = 0,
-        t18 = 0,
-        t19 = 0,
-        t20 = 0,
-        t21 = 0,
-        t22 = 0,
-        t23 = 0,
-        t24 = 0,
-        t25 = 0,
-        t26 = 0,
-        t27 = 0,
-        t28 = 0,
-        t29 = 0,
-        t30 = 0,
-        b0 = b[0],
-        b1 = b[1],
-        b2 = b[2],
-        b3 = b[3],
-        b4 = b[4],
-        b5 = b[5],
-        b6 = b[6],
-        b7 = b[7],
-        b8 = b[8],
-        b9 = b[9],
-        b10 = b[10],
-        b11 = b[11],
-        b12 = b[12],
-        b13 = b[13],
-        b14 = b[14],
-        b15 = b[15];
+      c,
+      t0 = 0,
+      t1 = 0,
+      t2 = 0,
+      t3 = 0,
+      t4 = 0,
+      t5 = 0,
+      t6 = 0,
+      t7 = 0,
+      t8 = 0,
+      t9 = 0,
+      t10 = 0,
+      t11 = 0,
+      t12 = 0,
+      t13 = 0,
+      t14 = 0,
+      t15 = 0,
+      t16 = 0,
+      t17 = 0,
+      t18 = 0,
+      t19 = 0,
+      t20 = 0,
+      t21 = 0,
+      t22 = 0,
+      t23 = 0,
+      t24 = 0,
+      t25 = 0,
+      t26 = 0,
+      t27 = 0,
+      t28 = 0,
+      t29 = 0,
+      t30 = 0,
+      b0 = b[0],
+      b1 = b[1],
+      b2 = b[2],
+      b3 = b[3],
+      b4 = b[4],
+      b5 = b[5],
+      b6 = b[6],
+      b7 = b[7],
+      b8 = b[8],
+      b9 = b[9],
+      b10 = b[10],
+      b11 = b[11],
+      b12 = b[12],
+      b13 = b[13],
+      b14 = b[14],
+      b15 = b[15];
     v = a[0];
     t0 += v * b0;
     t1 += v * b1;
@@ -1396,9 +1247,10 @@ return /******/ (function() { // webpackBootstrap
     t11 += 38 * t27;
     t12 += 38 * t28;
     t13 += 38 * t29;
-    t14 += 38 * t30; // t15 left as is
-    // first car
+    t14 += 38 * t30;
+    // t15 left as is
 
+    // first car
     c = 1;
     v = t0 + c + 65535;
     c = Math.floor(v / 65536);
@@ -1448,8 +1300,9 @@ return /******/ (function() { // webpackBootstrap
     v = t15 + c + 65535;
     c = Math.floor(v / 65536);
     t15 = v - c * 65536;
-    t0 += c - 1 + 37 * (c - 1); // second car
+    t0 += c - 1 + 37 * (c - 1);
 
+    // second car
     c = 1;
     v = t0 + c + 65535;
     c = Math.floor(v / 65536);
@@ -1517,74 +1370,49 @@ return /******/ (function() { // webpackBootstrap
     o[14] = t14;
     o[15] = t15;
   }
-
   function S(o, a) {
     M(o, a, a);
   }
-
   function inv25519(o, i) {
     var c = gf();
     var a;
-
-    for (a = 0; a < 16; a++) {
-      c[a] = i[a];
-    }
-
+    for (a = 0; a < 16; a++) c[a] = i[a];
     for (a = 253; a >= 0; a--) {
       S(c, c);
       if (a !== 2 && a !== 4) M(c, c, i);
     }
-
-    for (a = 0; a < 16; a++) {
-      o[a] = c[a];
-    }
+    for (a = 0; a < 16; a++) o[a] = c[a];
   }
-
   function pow2523(o, i) {
     var c = gf();
     var a;
-
-    for (a = 0; a < 16; a++) {
-      c[a] = i[a];
-    }
-
+    for (a = 0; a < 16; a++) c[a] = i[a];
     for (a = 250; a >= 0; a--) {
       S(c, c);
       if (a !== 1) M(c, c, i);
     }
-
-    for (a = 0; a < 16; a++) {
-      o[a] = c[a];
-    }
+    for (a = 0; a < 16; a++) o[a] = c[a];
   }
-
   function crypto_scalarmult(q, n, p) {
     var z = new Uint8Array(32);
     var x = new Float64Array(80),
-        r,
-        i;
+      r,
+      i;
     var a = gf(),
-        b = gf(),
-        c = gf(),
-        d = gf(),
-        e = gf(),
-        f = gf();
-
-    for (i = 0; i < 31; i++) {
-      z[i] = n[i];
-    }
-
+      b = gf(),
+      c = gf(),
+      d = gf(),
+      e = gf(),
+      f = gf();
+    for (i = 0; i < 31; i++) z[i] = n[i];
     z[31] = n[31] & 127 | 64;
     z[0] &= 248;
     unpack25519(x, p);
-
     for (i = 0; i < 16; i++) {
       b[i] = x[i];
       d[i] = a[i] = c[i] = 0;
     }
-
     a[0] = d[0] = 1;
-
     for (i = 254; i >= 0; --i) {
       r = z[i >>> 3] >>> (i & 7) & 1;
       sel25519(a, b, r);
@@ -1610,14 +1438,12 @@ return /******/ (function() { // webpackBootstrap
       sel25519(a, b, r);
       sel25519(c, d, r);
     }
-
     for (i = 0; i < 16; i++) {
       x[i + 16] = a[i];
       x[i + 32] = c[i];
       x[i + 48] = b[i];
       x[i + 64] = d[i];
     }
-
     var x32 = x.subarray(32);
     var x16 = x.subarray(16);
     inv25519(x32, x32);
@@ -1625,93 +1451,83 @@ return /******/ (function() { // webpackBootstrap
     pack25519(q, x16);
     return 0;
   }
-
   function crypto_scalarmult_base(q, n) {
     return crypto_scalarmult(q, n, _9);
   }
-
   function crypto_box_keypair(y, x) {
     randombytes(x, 32);
     return crypto_scalarmult_base(y, x);
   }
-
   function crypto_box_beforenm(k, y, x) {
     var s = new Uint8Array(32);
     crypto_scalarmult(s, x, y);
     return crypto_core_hsalsa20(k, _0, s, sigma);
   }
-
   var crypto_box_afternm = crypto_secretbox;
   var crypto_box_open_afternm = crypto_secretbox_open;
-
   function crypto_box(c, m, d, n, y, x) {
     var k = new Uint8Array(32);
     crypto_box_beforenm(k, y, x);
     return crypto_box_afternm(c, m, d, n, k);
   }
-
   function crypto_box_open(m, c, d, n, y, x) {
     var k = new Uint8Array(32);
     crypto_box_beforenm(k, y, x);
     return crypto_box_open_afternm(m, c, d, n, k);
   }
-
   var K = [0x428a2f98, 0xd728ae22, 0x71374491, 0x23ef65cd, 0xb5c0fbcf, 0xec4d3b2f, 0xe9b5dba5, 0x8189dbbc, 0x3956c25b, 0xf348b538, 0x59f111f1, 0xb605d019, 0x923f82a4, 0xaf194f9b, 0xab1c5ed5, 0xda6d8118, 0xd807aa98, 0xa3030242, 0x12835b01, 0x45706fbe, 0x243185be, 0x4ee4b28c, 0x550c7dc3, 0xd5ffb4e2, 0x72be5d74, 0xf27b896f, 0x80deb1fe, 0x3b1696b1, 0x9bdc06a7, 0x25c71235, 0xc19bf174, 0xcf692694, 0xe49b69c1, 0x9ef14ad2, 0xefbe4786, 0x384f25e3, 0x0fc19dc6, 0x8b8cd5b5, 0x240ca1cc, 0x77ac9c65, 0x2de92c6f, 0x592b0275, 0x4a7484aa, 0x6ea6e483, 0x5cb0a9dc, 0xbd41fbd4, 0x76f988da, 0x831153b5, 0x983e5152, 0xee66dfab, 0xa831c66d, 0x2db43210, 0xb00327c8, 0x98fb213f, 0xbf597fc7, 0xbeef0ee4, 0xc6e00bf3, 0x3da88fc2, 0xd5a79147, 0x930aa725, 0x06ca6351, 0xe003826f, 0x14292967, 0x0a0e6e70, 0x27b70a85, 0x46d22ffc, 0x2e1b2138, 0x5c26c926, 0x4d2c6dfc, 0x5ac42aed, 0x53380d13, 0x9d95b3df, 0x650a7354, 0x8baf63de, 0x766a0abb, 0x3c77b2a8, 0x81c2c92e, 0x47edaee6, 0x92722c85, 0x1482353b, 0xa2bfe8a1, 0x4cf10364, 0xa81a664b, 0xbc423001, 0xc24b8b70, 0xd0f89791, 0xc76c51a3, 0x0654be30, 0xd192e819, 0xd6ef5218, 0xd6990624, 0x5565a910, 0xf40e3585, 0x5771202a, 0x106aa070, 0x32bbd1b8, 0x19a4c116, 0xb8d2d0c8, 0x1e376c08, 0x5141ab53, 0x2748774c, 0xdf8eeb99, 0x34b0bcb5, 0xe19b48a8, 0x391c0cb3, 0xc5c95a63, 0x4ed8aa4a, 0xe3418acb, 0x5b9cca4f, 0x7763e373, 0x682e6ff3, 0xd6b2b8a3, 0x748f82ee, 0x5defb2fc, 0x78a5636f, 0x43172f60, 0x84c87814, 0xa1f0ab72, 0x8cc70208, 0x1a6439ec, 0x90befffa, 0x23631e28, 0xa4506ceb, 0xde82bde9, 0xbef9a3f7, 0xb2c67915, 0xc67178f2, 0xe372532b, 0xca273ece, 0xea26619c, 0xd186b8c7, 0x21c0c207, 0xeada7dd6, 0xcde0eb1e, 0xf57d4f7f, 0xee6ed178, 0x06f067aa, 0x72176fba, 0x0a637dc5, 0xa2c898a6, 0x113f9804, 0xbef90dae, 0x1b710b35, 0x131c471b, 0x28db77f5, 0x23047d84, 0x32caab7b, 0x40c72493, 0x3c9ebe0a, 0x15c9bebc, 0x431d67c4, 0x9c100d4c, 0x4cc5d4be, 0xcb3e42b6, 0x597f299c, 0xfc657e2a, 0x5fcb6fab, 0x3ad6faec, 0x6c44198c, 0x4a475817];
-
   function crypto_hashblocks_hl(hh, hl, m, n) {
     var wh = new Int32Array(16),
-        wl = new Int32Array(16),
-        bh0,
-        bh1,
-        bh2,
-        bh3,
-        bh4,
-        bh5,
-        bh6,
-        bh7,
-        bl0,
-        bl1,
-        bl2,
-        bl3,
-        bl4,
-        bl5,
-        bl6,
-        bl7,
-        th,
-        tl,
-        i,
-        j,
-        h,
-        l,
-        a,
-        b,
-        c,
-        d;
+      wl = new Int32Array(16),
+      bh0,
+      bh1,
+      bh2,
+      bh3,
+      bh4,
+      bh5,
+      bh6,
+      bh7,
+      bl0,
+      bl1,
+      bl2,
+      bl3,
+      bl4,
+      bl5,
+      bl6,
+      bl7,
+      th,
+      tl,
+      i,
+      j,
+      h,
+      l,
+      a,
+      b,
+      c,
+      d;
     var ah0 = hh[0],
-        ah1 = hh[1],
-        ah2 = hh[2],
-        ah3 = hh[3],
-        ah4 = hh[4],
-        ah5 = hh[5],
-        ah6 = hh[6],
-        ah7 = hh[7],
-        al0 = hl[0],
-        al1 = hl[1],
-        al2 = hl[2],
-        al3 = hl[3],
-        al4 = hl[4],
-        al5 = hl[5],
-        al6 = hl[6],
-        al7 = hl[7];
+      ah1 = hh[1],
+      ah2 = hh[2],
+      ah3 = hh[3],
+      ah4 = hh[4],
+      ah5 = hh[5],
+      ah6 = hh[6],
+      ah7 = hh[7],
+      al0 = hl[0],
+      al1 = hl[1],
+      al2 = hl[2],
+      al3 = hl[3],
+      al4 = hl[4],
+      al5 = hl[5],
+      al6 = hl[6],
+      al7 = hl[7];
     var pos = 0;
-
     while (n >= 128) {
       for (i = 0; i < 16; i++) {
         j = 8 * i + pos;
         wh[i] = m[j + 0] << 24 | m[j + 1] << 16 | m[j + 2] << 8 | m[j + 3];
         wl[i] = m[j + 4] << 24 | m[j + 5] << 16 | m[j + 6] << 8 | m[j + 7];
       }
-
       for (i = 0; i < 80; i++) {
         bh0 = ah0;
         bh1 = ah1;
@@ -1728,36 +1544,41 @@ return /******/ (function() { // webpackBootstrap
         bl4 = al4;
         bl5 = al5;
         bl6 = al6;
-        bl7 = al7; // add
+        bl7 = al7;
 
+        // add
         h = ah7;
         l = al7;
         a = l & 0xffff;
         b = l >>> 16;
         c = h & 0xffff;
-        d = h >>> 16; // Sigma1
+        d = h >>> 16;
 
+        // Sigma1
         h = (ah4 >>> 14 | al4 << 32 - 14) ^ (ah4 >>> 18 | al4 << 32 - 18) ^ (al4 >>> 41 - 32 | ah4 << 32 - (41 - 32));
         l = (al4 >>> 14 | ah4 << 32 - 14) ^ (al4 >>> 18 | ah4 << 32 - 18) ^ (ah4 >>> 41 - 32 | al4 << 32 - (41 - 32));
         a += l & 0xffff;
         b += l >>> 16;
         c += h & 0xffff;
-        d += h >>> 16; // Ch
+        d += h >>> 16;
 
+        // Ch
         h = ah4 & ah5 ^ ~ah4 & ah6;
         l = al4 & al5 ^ ~al4 & al6;
         a += l & 0xffff;
         b += l >>> 16;
         c += h & 0xffff;
-        d += h >>> 16; // K
+        d += h >>> 16;
 
+        // K
         h = K[i * 2];
         l = K[i * 2 + 1];
         a += l & 0xffff;
         b += l >>> 16;
         c += h & 0xffff;
-        d += h >>> 16; // w
+        d += h >>> 16;
 
+        // w
         h = wh[i % 16];
         l = wl[i % 16];
         a += l & 0xffff;
@@ -1768,22 +1589,25 @@ return /******/ (function() { // webpackBootstrap
         c += b >>> 16;
         d += c >>> 16;
         th = c & 0xffff | d << 16;
-        tl = a & 0xffff | b << 16; // add
+        tl = a & 0xffff | b << 16;
 
+        // add
         h = th;
         l = tl;
         a = l & 0xffff;
         b = l >>> 16;
         c = h & 0xffff;
-        d = h >>> 16; // Sigma0
+        d = h >>> 16;
 
+        // Sigma0
         h = (ah0 >>> 28 | al0 << 32 - 28) ^ (al0 >>> 34 - 32 | ah0 << 32 - (34 - 32)) ^ (al0 >>> 39 - 32 | ah0 << 32 - (39 - 32));
         l = (al0 >>> 28 | ah0 << 32 - 28) ^ (ah0 >>> 34 - 32 | al0 << 32 - (34 - 32)) ^ (ah0 >>> 39 - 32 | al0 << 32 - (39 - 32));
         a += l & 0xffff;
         b += l >>> 16;
         c += h & 0xffff;
-        d += h >>> 16; // Maj
+        d += h >>> 16;
 
+        // Maj
         h = ah0 & ah1 ^ ah0 & ah2 ^ ah1 & ah2;
         l = al0 & al1 ^ al0 & al2 ^ al1 & al2;
         a += l & 0xffff;
@@ -1794,8 +1618,9 @@ return /******/ (function() { // webpackBootstrap
         c += b >>> 16;
         d += c >>> 16;
         bh7 = c & 0xffff | d << 16;
-        bl7 = a & 0xffff | b << 16; // add
+        bl7 = a & 0xffff | b << 16;
 
+        // add
         h = bh3;
         l = bl3;
         a = l & 0xffff;
@@ -1829,7 +1654,6 @@ return /******/ (function() { // webpackBootstrap
         al6 = bl5;
         al7 = bl6;
         al0 = bl7;
-
         if (i % 16 === 15) {
           for (j = 0; j < 16; j++) {
             // add
@@ -1844,8 +1668,9 @@ return /******/ (function() { // webpackBootstrap
             a += l & 0xffff;
             b += l >>> 16;
             c += h & 0xffff;
-            d += h >>> 16; // sigma0
+            d += h >>> 16;
 
+            // sigma0
             th = wh[(j + 1) % 16];
             tl = wl[(j + 1) % 16];
             h = (th >>> 1 | tl << 32 - 1) ^ (th >>> 8 | tl << 32 - 8) ^ th >>> 7;
@@ -1853,8 +1678,9 @@ return /******/ (function() { // webpackBootstrap
             a += l & 0xffff;
             b += l >>> 16;
             c += h & 0xffff;
-            d += h >>> 16; // sigma1
+            d += h >>> 16;
 
+            // sigma1
             th = wh[(j + 14) % 16];
             tl = wl[(j + 14) % 16];
             h = (th >>> 19 | tl << 32 - 19) ^ (tl >>> 61 - 32 | th << 32 - (61 - 32)) ^ th >>> 6;
@@ -1870,9 +1696,9 @@ return /******/ (function() { // webpackBootstrap
             wl[j] = a & 0xffff | b << 16;
           }
         }
-      } // add
+      }
 
-
+      // add
       h = ah0;
       l = al0;
       a = l & 0xffff;
@@ -2012,16 +1838,14 @@ return /******/ (function() { // webpackBootstrap
       pos += 128;
       n -= 128;
     }
-
     return n;
   }
-
   function crypto_hash(out, m, n) {
     var hh = new Int32Array(8),
-        hl = new Int32Array(8),
-        x = new Uint8Array(256),
-        i,
-        b = n;
+      hl = new Int32Array(8),
+      x = new Uint8Array(256),
+      i,
+      b = n;
     hh[0] = 0x6a09e667;
     hh[1] = 0xbb67ae85;
     hh[2] = 0x3c6ef372;
@@ -2040,34 +1864,25 @@ return /******/ (function() { // webpackBootstrap
     hl[7] = 0x137e2179;
     crypto_hashblocks_hl(hh, hl, m, n);
     n %= 128;
-
-    for (i = 0; i < n; i++) {
-      x[i] = m[b - n + i];
-    }
-
+    for (i = 0; i < n; i++) x[i] = m[b - n + i];
     x[n] = 128;
     n = 256 - 128 * (n < 112 ? 1 : 0);
     x[n - 9] = 0;
     ts64(x, n - 8, b / 0x20000000 | 0, b << 3);
     crypto_hashblocks_hl(hh, hl, x, n);
-
-    for (i = 0; i < 8; i++) {
-      ts64(out, 8 * i, hh[i], hl[i]);
-    }
-
+    for (i = 0; i < 8; i++) ts64(out, 8 * i, hh[i], hl[i]);
     return 0;
   }
-
   function add(p, q) {
     var a = gf(),
-        b = gf(),
-        c = gf(),
-        d = gf(),
-        e = gf(),
-        f = gf(),
-        g = gf(),
-        h = gf(),
-        t = gf();
+      b = gf(),
+      c = gf(),
+      d = gf(),
+      e = gf(),
+      f = gf(),
+      g = gf(),
+      h = gf(),
+      t = gf();
     Z(a, p[1], p[0]);
     Z(t, q[1], q[0]);
     M(a, a, t);
@@ -2087,33 +1902,28 @@ return /******/ (function() { // webpackBootstrap
     M(p[2], g, f);
     M(p[3], e, h);
   }
-
   function cswap(p, q, b) {
     var i;
-
     for (i = 0; i < 4; i++) {
       sel25519(p[i], q[i], b);
     }
   }
-
   function pack(r, p) {
     var tx = gf(),
-        ty = gf(),
-        zi = gf();
+      ty = gf(),
+      zi = gf();
     inv25519(zi, p[2]);
     M(tx, p[0], zi);
     M(ty, p[1], zi);
     pack25519(r, ty);
     r[31] ^= par25519(tx) << 7;
   }
-
   function scalarmult(p, q, s) {
     var b, i;
     set25519(p[0], gf0);
     set25519(p[1], gf1);
     set25519(p[2], gf1);
     set25519(p[3], gf0);
-
     for (i = 255; i >= 0; --i) {
       b = s[i / 8 | 0] >> (i & 7) & 1;
       cswap(p, q, b);
@@ -2122,7 +1932,6 @@ return /******/ (function() { // webpackBootstrap
       cswap(p, q, b);
     }
   }
-
   function scalarbase(p, s) {
     var q = [gf(), gf(), gf(), gf()];
     set25519(q[0], X);
@@ -2131,7 +1940,6 @@ return /******/ (function() { // webpackBootstrap
     M(q[3], X, Y);
     scalarmult(p, q, s);
   }
-
   function crypto_sign_keypair(pk, sk, seeded) {
     var d = new Uint8Array(64);
     var p = [gf(), gf(), gf(), gf()];
@@ -2143,126 +1951,83 @@ return /******/ (function() { // webpackBootstrap
     d[31] |= 64;
     scalarbase(p, d);
     pack(pk, p);
-
-    for (i = 0; i < 32; i++) {
-      sk[i + 32] = pk[i];
-    }
-
+    for (i = 0; i < 32; i++) sk[i + 32] = pk[i];
     return 0;
   }
-
   var L = new Float64Array([0xed, 0xd3, 0xf5, 0x5c, 0x1a, 0x63, 0x12, 0x58, 0xd6, 0x9c, 0xf7, 0xa2, 0xde, 0xf9, 0xde, 0x14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0x10]);
-
   function modL(r, x) {
     var carry, i, j, k;
-
     for (i = 63; i >= 32; --i) {
       carry = 0;
-
       for (j = i - 32, k = i - 12; j < k; ++j) {
         x[j] += carry - 16 * x[i] * L[j - (i - 32)];
         carry = Math.floor((x[j] + 128) / 256);
         x[j] -= carry * 256;
       }
-
       x[j] += carry;
       x[i] = 0;
     }
-
     carry = 0;
-
     for (j = 0; j < 32; j++) {
       x[j] += carry - (x[31] >> 4) * L[j];
       carry = x[j] >> 8;
       x[j] &= 255;
     }
-
-    for (j = 0; j < 32; j++) {
-      x[j] -= carry * L[j];
-    }
-
+    for (j = 0; j < 32; j++) x[j] -= carry * L[j];
     for (i = 0; i < 32; i++) {
       x[i + 1] += x[i] >> 8;
       r[i] = x[i] & 255;
     }
   }
-
   function reduce(r) {
     var x = new Float64Array(64),
-        i;
-
-    for (i = 0; i < 64; i++) {
-      x[i] = r[i];
-    }
-
-    for (i = 0; i < 64; i++) {
-      r[i] = 0;
-    }
-
+      i;
+    for (i = 0; i < 64; i++) x[i] = r[i];
+    for (i = 0; i < 64; i++) r[i] = 0;
     modL(r, x);
-  } // Note: difference from C - smlen returned, not passed as argument.
+  }
 
-
+  // Note: difference from C - smlen returned, not passed as argument.
   function crypto_sign(sm, m, n, sk) {
     var d = new Uint8Array(64),
-        h = new Uint8Array(64),
-        r = new Uint8Array(64);
+      h = new Uint8Array(64),
+      r = new Uint8Array(64);
     var i,
-        j,
-        x = new Float64Array(64);
+      j,
+      x = new Float64Array(64);
     var p = [gf(), gf(), gf(), gf()];
     crypto_hash(d, sk, 32);
     d[0] &= 248;
     d[31] &= 127;
     d[31] |= 64;
     var smlen = n + 64;
-
-    for (i = 0; i < n; i++) {
-      sm[64 + i] = m[i];
-    }
-
-    for (i = 0; i < 32; i++) {
-      sm[32 + i] = d[32 + i];
-    }
-
+    for (i = 0; i < n; i++) sm[64 + i] = m[i];
+    for (i = 0; i < 32; i++) sm[32 + i] = d[32 + i];
     crypto_hash(r, sm.subarray(32), n + 32);
     reduce(r);
     scalarbase(p, r);
     pack(sm, p);
-
-    for (i = 32; i < 64; i++) {
-      sm[i] = sk[i];
-    }
-
+    for (i = 32; i < 64; i++) sm[i] = sk[i];
     crypto_hash(h, sm, n + 64);
     reduce(h);
-
-    for (i = 0; i < 64; i++) {
-      x[i] = 0;
-    }
-
-    for (i = 0; i < 32; i++) {
-      x[i] = r[i];
-    }
-
+    for (i = 0; i < 64; i++) x[i] = 0;
+    for (i = 0; i < 32; i++) x[i] = r[i];
     for (i = 0; i < 32; i++) {
       for (j = 0; j < 32; j++) {
         x[i + j] += h[i] * d[j];
       }
     }
-
     modL(sm.subarray(32), x);
     return smlen;
   }
-
   function unpackneg(r, p) {
     var t = gf(),
-        chk = gf(),
-        num = gf(),
-        den = gf(),
-        den2 = gf(),
-        den4 = gf(),
-        den6 = gf();
+      chk = gf(),
+      num = gf(),
+      den = gf(),
+      den2 = gf(),
+      den4 = gf(),
+      den6 = gf();
     set25519(r[2], gf1);
     unpack25519(r[1], p);
     S(num, r[1]);
@@ -2289,24 +2054,16 @@ return /******/ (function() { // webpackBootstrap
     M(r[3], r[0], r[1]);
     return 0;
   }
-
   function crypto_sign_open(m, sm, n, pk) {
     var i;
     var t = new Uint8Array(32),
-        h = new Uint8Array(64);
+      h = new Uint8Array(64);
     var p = [gf(), gf(), gf(), gf()],
-        q = [gf(), gf(), gf(), gf()];
+      q = [gf(), gf(), gf(), gf()];
     if (n < 64) return -1;
     if (unpackneg(q, pk)) return -1;
-
-    for (i = 0; i < n; i++) {
-      m[i] = sm[i];
-    }
-
-    for (i = 0; i < 32; i++) {
-      m[i + 32] = pk[i];
-    }
-
+    for (i = 0; i < n; i++) m[i] = sm[i];
+    for (i = 0; i < 32; i++) m[i + 32] = pk[i];
     crypto_hash(h, m, n);
     reduce(h);
     scalarmult(p, q, h);
@@ -2314,39 +2071,30 @@ return /******/ (function() { // webpackBootstrap
     add(p, q);
     pack(t, p);
     n -= 64;
-
     if (crypto_verify_32(sm, 0, t, 0)) {
-      for (i = 0; i < n; i++) {
-        m[i] = 0;
-      }
-
+      for (i = 0; i < n; i++) m[i] = 0;
       return -1;
     }
-
-    for (i = 0; i < n; i++) {
-      m[i] = sm[i + 64];
-    }
-
+    for (i = 0; i < n; i++) m[i] = sm[i + 64];
     return n;
   }
-
   var crypto_secretbox_KEYBYTES = 32,
-      crypto_secretbox_NONCEBYTES = 24,
-      crypto_secretbox_ZEROBYTES = 32,
-      crypto_secretbox_BOXZEROBYTES = 16,
-      crypto_scalarmult_BYTES = 32,
-      crypto_scalarmult_SCALARBYTES = 32,
-      crypto_box_PUBLICKEYBYTES = 32,
-      crypto_box_SECRETKEYBYTES = 32,
-      crypto_box_BEFORENMBYTES = 32,
-      crypto_box_NONCEBYTES = crypto_secretbox_NONCEBYTES,
-      crypto_box_ZEROBYTES = crypto_secretbox_ZEROBYTES,
-      crypto_box_BOXZEROBYTES = crypto_secretbox_BOXZEROBYTES,
-      crypto_sign_BYTES = 64,
-      crypto_sign_PUBLICKEYBYTES = 32,
-      crypto_sign_SECRETKEYBYTES = 64,
-      crypto_sign_SEEDBYTES = 32,
-      crypto_hash_BYTES = 64;
+    crypto_secretbox_NONCEBYTES = 24,
+    crypto_secretbox_ZEROBYTES = 32,
+    crypto_secretbox_BOXZEROBYTES = 16,
+    crypto_scalarmult_BYTES = 32,
+    crypto_scalarmult_SCALARBYTES = 32,
+    crypto_box_PUBLICKEYBYTES = 32,
+    crypto_box_SECRETKEYBYTES = 32,
+    crypto_box_BEFORENMBYTES = 32,
+    crypto_box_NONCEBYTES = crypto_secretbox_NONCEBYTES,
+    crypto_box_ZEROBYTES = crypto_secretbox_ZEROBYTES,
+    crypto_box_BOXZEROBYTES = crypto_secretbox_BOXZEROBYTES,
+    crypto_sign_BYTES = 64,
+    crypto_sign_PUBLICKEYBYTES = 32,
+    crypto_sign_SECRETKEYBYTES = 64,
+    crypto_sign_SEEDBYTES = 32,
+    crypto_hash_BYTES = 64;
   nacl.lowlevel = {
     crypto_core_hsalsa20: crypto_core_hsalsa20,
     crypto_stream_xor: crypto_stream_xor,
@@ -2403,69 +2151,52 @@ return /******/ (function() { // webpackBootstrap
     scalarmult: scalarmult,
     scalarbase: scalarbase
   };
+
   /* High-level API */
 
   function checkLengths(k, n) {
     if (k.length !== crypto_secretbox_KEYBYTES) throw new Error('bad key size');
     if (n.length !== crypto_secretbox_NONCEBYTES) throw new Error('bad nonce size');
   }
-
   function checkBoxLengths(pk, sk) {
     if (pk.length !== crypto_box_PUBLICKEYBYTES) throw new Error('bad public key size');
     if (sk.length !== crypto_box_SECRETKEYBYTES) throw new Error('bad secret key size');
   }
-
   function checkArrayTypes() {
     for (var i = 0; i < arguments.length; i++) {
       if (!(arguments[i] instanceof Uint8Array)) throw new TypeError('unexpected type, use Uint8Array');
     }
   }
-
   function cleanup(arr) {
-    for (var i = 0; i < arr.length; i++) {
-      arr[i] = 0;
-    }
+    for (var i = 0; i < arr.length; i++) arr[i] = 0;
   }
-
   nacl.randomBytes = function (n) {
     var b = new Uint8Array(n);
     randombytes(b, n);
     return b;
   };
-
   nacl.secretbox = function (msg, nonce, key) {
     checkArrayTypes(msg, nonce, key);
     checkLengths(key, nonce);
     var m = new Uint8Array(crypto_secretbox_ZEROBYTES + msg.length);
     var c = new Uint8Array(m.length);
-
-    for (var i = 0; i < msg.length; i++) {
-      m[i + crypto_secretbox_ZEROBYTES] = msg[i];
-    }
-
+    for (var i = 0; i < msg.length; i++) m[i + crypto_secretbox_ZEROBYTES] = msg[i];
     crypto_secretbox(c, m, m.length, nonce, key);
     return c.subarray(crypto_secretbox_BOXZEROBYTES);
   };
-
   nacl.secretbox.open = function (box, nonce, key) {
     checkArrayTypes(box, nonce, key);
     checkLengths(key, nonce);
     var c = new Uint8Array(crypto_secretbox_BOXZEROBYTES + box.length);
     var m = new Uint8Array(c.length);
-
-    for (var i = 0; i < box.length; i++) {
-      c[i + crypto_secretbox_BOXZEROBYTES] = box[i];
-    }
-
+    for (var i = 0; i < box.length; i++) c[i + crypto_secretbox_BOXZEROBYTES] = box[i];
     if (c.length < 32) return null;
     if (crypto_secretbox_open(m, c, c.length, nonce, key) !== 0) return null;
     return m.subarray(crypto_secretbox_ZEROBYTES);
   };
-
   nacl.secretbox.keyLength = crypto_secretbox_KEYBYTES;
   nacl.secretbox.nonceLength = crypto_secretbox_NONCEBYTES;
   nacl.secretbox.overheadLength = crypto_secretbox_BOXZEROBYTES;
-
   nacl.scalarMult = function (n, p) {
     checkArrayTypes(n, p);
     if (n.length !== crypto_scalarmult_SCALARBYTES) throw new Error('bad n size');
@@ -2474,7 +2205,6 @@ return /******/ (function() { // webpackBootstrap
     crypto_scalarmult(q, n, p);
     return q;
   };
-
   nacl.scalarMult.base = function (n) {
     checkArrayTypes(n);
     if (n.length !== crypto_scalarmult_SCALARBYTES) throw new Error('bad n size');
@@ -2482,15 +2212,12 @@ return /******/ (function() { // webpackBootstrap
     crypto_scalarmult_base(q, n);
     return q;
   };
-
   nacl.scalarMult.scalarLength = crypto_scalarmult_SCALARBYTES;
   nacl.scalarMult.groupElementLength = crypto_scalarmult_BYTES;
-
   nacl.box = function (msg, nonce, publicKey, secretKey) {
     var k = nacl.box.before(publicKey, secretKey);
     return nacl.secretbox(msg, nonce, k);
   };
-
   nacl.box.before = function (publicKey, secretKey) {
     checkArrayTypes(publicKey, secretKey);
     checkBoxLengths(publicKey, secretKey);
@@ -2498,16 +2225,12 @@ return /******/ (function() { // webpackBootstrap
     crypto_box_beforenm(k, publicKey, secretKey);
     return k;
   };
-
   nacl.box.after = nacl.secretbox;
-
   nacl.box.open = function (msg, nonce, publicKey, secretKey) {
     var k = nacl.box.before(publicKey, secretKey);
     return nacl.secretbox.open(msg, nonce, k);
   };
-
   nacl.box.open.after = nacl.secretbox.open;
-
   nacl.box.keyPair = function () {
     var pk = new Uint8Array(crypto_box_PUBLICKEYBYTES);
     var sk = new Uint8Array(crypto_box_SECRETKEYBYTES);
@@ -2517,7 +2240,6 @@ return /******/ (function() { // webpackBootstrap
       secretKey: sk
     };
   };
-
   nacl.box.keyPair.fromSecretKey = function (secretKey) {
     checkArrayTypes(secretKey);
     if (secretKey.length !== crypto_box_SECRETKEYBYTES) throw new Error('bad secret key size');
@@ -2528,13 +2250,11 @@ return /******/ (function() { // webpackBootstrap
       secretKey: new Uint8Array(secretKey)
     };
   };
-
   nacl.box.publicKeyLength = crypto_box_PUBLICKEYBYTES;
   nacl.box.secretKeyLength = crypto_box_SECRETKEYBYTES;
   nacl.box.sharedKeyLength = crypto_box_BEFORENMBYTES;
   nacl.box.nonceLength = crypto_box_NONCEBYTES;
   nacl.box.overheadLength = nacl.secretbox.overheadLength;
-
   nacl.sign = function (msg, secretKey) {
     checkArrayTypes(msg, secretKey);
     if (secretKey.length !== crypto_sign_SECRETKEYBYTES) throw new Error('bad secret key size');
@@ -2542,7 +2262,6 @@ return /******/ (function() { // webpackBootstrap
     crypto_sign(signedMsg, msg, msg.length, secretKey);
     return signedMsg;
   };
-
   nacl.sign.open = function (signedMsg, publicKey) {
     checkArrayTypes(signedMsg, publicKey);
     if (publicKey.length !== crypto_sign_PUBLICKEYBYTES) throw new Error('bad public key size');
@@ -2550,25 +2269,15 @@ return /******/ (function() { // webpackBootstrap
     var mlen = crypto_sign_open(tmp, signedMsg, signedMsg.length, publicKey);
     if (mlen < 0) return null;
     var m = new Uint8Array(mlen);
-
-    for (var i = 0; i < m.length; i++) {
-      m[i] = tmp[i];
-    }
-
+    for (var i = 0; i < m.length; i++) m[i] = tmp[i];
     return m;
   };
-
   nacl.sign.detached = function (msg, secretKey) {
     var signedMsg = nacl.sign(msg, secretKey);
     var sig = new Uint8Array(crypto_sign_BYTES);
-
-    for (var i = 0; i < sig.length; i++) {
-      sig[i] = signedMsg[i];
-    }
-
+    for (var i = 0; i < sig.length; i++) sig[i] = signedMsg[i];
     return sig;
   };
-
   nacl.sign.detached.verify = function (msg, sig, publicKey) {
     checkArrayTypes(msg, sig, publicKey);
     if (sig.length !== crypto_sign_BYTES) throw new Error('bad signature size');
@@ -2576,18 +2285,10 @@ return /******/ (function() { // webpackBootstrap
     var sm = new Uint8Array(crypto_sign_BYTES + msg.length);
     var m = new Uint8Array(crypto_sign_BYTES + msg.length);
     var i;
-
-    for (i = 0; i < crypto_sign_BYTES; i++) {
-      sm[i] = sig[i];
-    }
-
-    for (i = 0; i < msg.length; i++) {
-      sm[i + crypto_sign_BYTES] = msg[i];
-    }
-
+    for (i = 0; i < crypto_sign_BYTES; i++) sm[i] = sig[i];
+    for (i = 0; i < msg.length; i++) sm[i + crypto_sign_BYTES] = msg[i];
     return crypto_sign_open(m, sm, sm.length, publicKey) >= 0;
   };
-
   nacl.sign.keyPair = function () {
     var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
     var sk = new Uint8Array(crypto_sign_SECRETKEYBYTES);
@@ -2597,100 +2298,73 @@ return /******/ (function() { // webpackBootstrap
       secretKey: sk
     };
   };
-
   nacl.sign.keyPair.fromSecretKey = function (secretKey) {
     checkArrayTypes(secretKey);
     if (secretKey.length !== crypto_sign_SECRETKEYBYTES) throw new Error('bad secret key size');
     var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
-
-    for (var i = 0; i < pk.length; i++) {
-      pk[i] = secretKey[32 + i];
-    }
-
+    for (var i = 0; i < pk.length; i++) pk[i] = secretKey[32 + i];
     return {
       publicKey: pk,
       secretKey: new Uint8Array(secretKey)
     };
   };
-
   nacl.sign.keyPair.fromSeed = function (seed) {
     checkArrayTypes(seed);
     if (seed.length !== crypto_sign_SEEDBYTES) throw new Error('bad seed size');
     var pk = new Uint8Array(crypto_sign_PUBLICKEYBYTES);
     var sk = new Uint8Array(crypto_sign_SECRETKEYBYTES);
-
-    for (var i = 0; i < 32; i++) {
-      sk[i] = seed[i];
-    }
-
+    for (var i = 0; i < 32; i++) sk[i] = seed[i];
     crypto_sign_keypair(pk, sk, true);
     return {
       publicKey: pk,
       secretKey: sk
     };
   };
-
   nacl.sign.publicKeyLength = crypto_sign_PUBLICKEYBYTES;
   nacl.sign.secretKeyLength = crypto_sign_SECRETKEYBYTES;
   nacl.sign.seedLength = crypto_sign_SEEDBYTES;
   nacl.sign.signatureLength = crypto_sign_BYTES;
-
   nacl.hash = function (msg) {
     checkArrayTypes(msg);
     var h = new Uint8Array(crypto_hash_BYTES);
     crypto_hash(h, msg, msg.length);
     return h;
   };
-
   nacl.hash.hashLength = crypto_hash_BYTES;
-
   nacl.verify = function (x, y) {
-    checkArrayTypes(x, y); // Zero length arguments are considered not equal.
-
+    checkArrayTypes(x, y);
+    // Zero length arguments are considered not equal.
     if (x.length === 0 || y.length === 0) return false;
     if (x.length !== y.length) return false;
     return vn(x, 0, y, 0, x.length) === 0 ? true : false;
   };
-
   nacl.setPRNG = function (fn) {
     randombytes = fn;
   };
-
   (function () {
     // Initialize PRNG if environment provides CSPRNG.
     // If not, methods calling randombytes will throw.
     var crypto = typeof self !== 'undefined' ? self.crypto || self.msCrypto : null;
-
     if (crypto && crypto.getRandomValues) {
       // Browsers.
       var QUOTA = 65536;
       nacl.setPRNG(function (x, n) {
         var i,
-            v = new Uint8Array(n);
-
+          v = new Uint8Array(n);
         for (i = 0; i < n; i += QUOTA) {
           crypto.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
         }
-
-        for (i = 0; i < n; i++) {
-          x[i] = v[i];
-        }
-
+        for (i = 0; i < n; i++) x[i] = v[i];
         cleanup(v);
       });
     } else if (true) {
       // Node.js.
       crypto = __webpack_require__(/*! crypto */ "?b5ad");
-
       if (crypto && crypto.randomBytes) {
         nacl.setPRNG(function (x, n) {
           var i,
-              v = crypto.randomBytes(n);
-
-          for (i = 0; i < n; i++) {
-            x[i] = v[i];
-          }
-
+            v = crypto.randomBytes(n);
+          for (i = 0; i < n; i++) x[i] = v[i];
           cleanup(v);
         });
       }
@@ -2713,7 +2387,8 @@ var arrayNonindexKeys = [{
     testPlainObjects: true,
     test: function test(x, stateObj) {
       if (Array.isArray(x)) {
-        if ( // By avoiding serializing arrays into objects which
+        if (
+        // By avoiding serializing arrays into objects which
         //  have only positive-integer keys, we reduce
         //  size and improve revival performance; arrays with
         //  non-index keys will be larger however
@@ -2730,10 +2405,8 @@ var arrayNonindexKeys = [{
           stateObj.iterateIn = 'object';
           stateObj.addLength = true;
         }
-
         return true;
       }
-
       return false;
     },
     replace: function replace(a, stateObj) {
@@ -2745,12 +2418,11 @@ var arrayNonindexKeys = [{
       if (Array.isArray(o)) {
         return o;
       }
-
-      var arr = []; // No map here as may be a sparse array (including
+      var arr = [];
+      // No map here as may be a sparse array (including
       //   with `length` set)
       // Todo: Reenable when Node `engines` >= 7
       // Object.entries(o).forEach(([key, val]) => {
-
       Object.keys(o).forEach(function (key) {
         var val = o[key];
         arr[key] = val;
@@ -2769,7 +2441,6 @@ var arrayNonindexKeys = [{
     revive: function revive(s) {
       return undefined;
     } // Will avoid adding anything
-
   }
 }];
 /* harmony default export */ __webpack_exports__["default"] = (arrayNonindexKeys);
@@ -2831,22 +2502,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var expObj = [_types_undef_js__WEBPACK_IMPORTED_MODULE_1__["default"], // ES5
-_array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__["default"], _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__["default"], _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__["default"], _types_date_js__WEBPACK_IMPORTED_MODULE_4__["default"], _types_error_js__WEBPACK_IMPORTED_MODULE_5__["default"], _types_errors_js__WEBPACK_IMPORTED_MODULE_6__["default"], _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__["default"]].concat( // ES2015 (ES6)
 
+var expObj = [_types_undef_js__WEBPACK_IMPORTED_MODULE_1__["default"],
+// ES5
+_array_nonindex_keys_js__WEBPACK_IMPORTED_MODULE_0__["default"], _types_primitive_objects_js__WEBPACK_IMPORTED_MODULE_2__["default"], _special_numbers_js__WEBPACK_IMPORTED_MODULE_3__["default"], _types_date_js__WEBPACK_IMPORTED_MODULE_4__["default"], _types_error_js__WEBPACK_IMPORTED_MODULE_5__["default"], _types_errors_js__WEBPACK_IMPORTED_MODULE_6__["default"], _types_regexp_js__WEBPACK_IMPORTED_MODULE_7__["default"]].concat(
+// ES2015 (ES6)
 /* istanbul ignore next */
-typeof Map === 'function' ? _types_map_js__WEBPACK_IMPORTED_MODULE_8__["default"] : [],
-/* istanbul ignore next */
-typeof Set === 'function' ? _types_set_js__WEBPACK_IMPORTED_MODULE_9__["default"] : [],
-/* istanbul ignore next */
-typeof ArrayBuffer === 'function' ? _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__["default"] : [],
-/* istanbul ignore next */
-typeof Uint8Array === 'function' ? _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__["default"] : [],
-/* istanbul ignore next */
-typeof DataView === 'function' ? _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__["default"] : [],
-/* istanbul ignore next */
-typeof Intl !== 'undefined' ? _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__["default"] : [],
-/* istanbul ignore next */
+typeof Map === 'function' ? _types_map_js__WEBPACK_IMPORTED_MODULE_8__["default"] : [], /* istanbul ignore next */
+typeof Set === 'function' ? _types_set_js__WEBPACK_IMPORTED_MODULE_9__["default"] : [], /* istanbul ignore next */
+typeof ArrayBuffer === 'function' ? _types_arraybuffer_js__WEBPACK_IMPORTED_MODULE_10__["default"] : [], /* istanbul ignore next */
+typeof Uint8Array === 'function' ? _types_typed_arrays_js__WEBPACK_IMPORTED_MODULE_11__["default"] : [], /* istanbul ignore next */
+typeof DataView === 'function' ? _types_dataview_js__WEBPACK_IMPORTED_MODULE_12__["default"] : [], /* istanbul ignore next */
+typeof Intl !== 'undefined' ? _types_intl_types_js__WEBPACK_IMPORTED_MODULE_13__["default"] : [], /* istanbul ignore next */
 typeof BigInt !== 'undefined' ? [_types_bigint_js__WEBPACK_IMPORTED_MODULE_14__["default"], _types_bigint_object_js__WEBPACK_IMPORTED_MODULE_15__["default"]] : []);
 /* harmony default export */ __webpack_exports__["default"] = (expObj);
 
@@ -2882,8 +2549,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! base64-arraybuffer-es6 */ "./.yarn/__virtual__/base64-arraybuffer-es6-virtual-7c001f2643/4/.yarn/berry/cache/base64-arraybuffer-es6-npm-0.6.0-59f5d0f035-8.zip/node_modules/base64-arraybuffer-es6/dist/base64-arraybuffer-es.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
 
 var arraybuffer = {
@@ -2895,15 +2561,12 @@ var arraybuffer = {
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       var index = stateObj.buffers.indexOf(b);
-
       if (index > -1) {
         return {
           index: index
         };
       }
-
       stateObj.buffers.push(b);
       return (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.encode)(b);
     },
@@ -2911,18 +2574,18 @@ var arraybuffer = {
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       if (_typeof(b64) === 'object') {
         return stateObj.buffers[b64.index];
       }
-
       var buffer = (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.decode)(b64);
       stateObj.buffers.push(buffer);
       return buffer;
     }
   }
 };
-/* harmony default export */ __webpack_exports__["default"] = (arraybuffer); // See also typed-arrays!
+/* harmony default export */ __webpack_exports__["default"] = (arraybuffer);
+
+// See also typed-arrays!
 
 /***/ }),
 
@@ -2936,8 +2599,7 @@ var arraybuffer = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 /* globals BigInt */
 
 var bigintObject = {
@@ -2968,6 +2630,7 @@ var bigintObject = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* globals BigInt */
+
 var bigint = {
   bigint: {
     test: function test(x) {
@@ -3005,15 +2668,12 @@ var dataview = {
     },
     replace: function replace(_ref, stateObj) {
       var buffer = _ref.buffer,
-          byteOffset = _ref.byteOffset,
-          byteLength = _ref.byteLength;
-
+        byteOffset = _ref.byteOffset,
+        byteLength = _ref.byteLength;
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       var index = stateObj.buffers.indexOf(buffer);
-
       if (index > -1) {
         return {
           index: index,
@@ -3021,7 +2681,6 @@ var dataview = {
           byteLength: byteLength
         };
       }
-
       stateObj.buffers.push(buffer);
       return {
         encoded: (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.encode)(buffer),
@@ -3033,20 +2692,17 @@ var dataview = {
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       var byteOffset = b64Obj.byteOffset,
-          byteLength = b64Obj.byteLength,
-          encoded = b64Obj.encoded,
-          index = b64Obj.index;
+        byteLength = b64Obj.byteLength,
+        encoded = b64Obj.encoded,
+        index = b64Obj.index;
       var buffer;
-
       if ('index' in b64Obj) {
         buffer = stateObj.buffers[index];
       } else {
         buffer = (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.decode)(encoded);
         stateObj.buffers.push(buffer);
       }
-
       return new DataView(buffer, byteOffset, byteLength);
     }
   }
@@ -3073,18 +2729,15 @@ var date = {
     },
     replace: function replace(dt) {
       var time = dt.getTime();
-
       if (Number.isNaN(time)) {
         return 'NaN';
       }
-
       return time;
     },
     revive: function revive(time) {
       if (time === 'NaN') {
         return new Date(Number.NaN);
       }
-
       return new Date(time);
     }
   }
@@ -3111,7 +2764,7 @@ var error = {
     },
     replace: function replace(_ref) {
       var name = _ref.name,
-          message = _ref.message;
+        message = _ref.message;
       return {
         name: name,
         message: message
@@ -3119,13 +2772,14 @@ var error = {
     },
     revive: function revive(_ref2) {
       var name = _ref2.name,
-          message = _ref2.message;
+        message = _ref2.message;
       var e = new Error(message);
       e.name = name;
       return e;
     }
   }
-}; // See also errors.js that may be registered after having registered this type.
+};
+// See also errors.js that may be registered after having registered this type.
 
 /* harmony default export */ __webpack_exports__["default"] = (error);
 
@@ -3143,16 +2797,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 /* eslint-env browser, node */
 
+
 /* istanbul ignore next */
-
 var _global = typeof self === 'undefined' ? __webpack_require__.g : self;
-
-var errors = {}; // Comprises all built-in errors.
-
+var errors = {};
+// Comprises all built-in errors.
 ['TypeError', 'RangeError', 'SyntaxError', 'ReferenceError', 'EvalError', 'URIError', 'InternalError' // non-standard
 ].forEach(function (errName) {
   var Cnstrctr = _global[errName];
-
   if (Cnstrctr) {
     errors[errName.toLowerCase()] = {
       test: function test(x) {
@@ -3260,17 +2912,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var map = {
   map: {
@@ -3349,11 +2995,9 @@ var negativeInfinity = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 // This module is for objectified primitives (such as `new Number(3)` or
 //      `new String("foo")`)
-
 /* eslint-disable no-new-wrappers, unicorn/new-for-builtins */
 
 var primitiveObjects = {
@@ -3369,7 +3013,6 @@ var primitiveObjects = {
     revive: function revive(s) {
       return new String(s);
     } // Revive to an objectified string
-
   },
   // Boolean Object (not primitive boolean which need no type spec)
   BooleanObject: {
@@ -3397,7 +3040,6 @@ var primitiveObjects = {
     revive: function revive(n) {
       return new Number(n);
     } // Revive to an objectified number
-
   }
 };
 /* eslint-enable no-new-wrappers, unicorn/new-for-builtins */
@@ -3430,7 +3072,7 @@ var regexp = {
     },
     revive: function revive(_ref) {
       var source = _ref.source,
-          flags = _ref.flags;
+        flags = _ref.flags;
       return new RegExp(source, flags);
     }
   }
@@ -3450,17 +3092,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js");
 /* harmony import */ var typeson__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typeson__WEBPACK_IMPORTED_MODULE_0__);
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 
 var set = {
   set: {
@@ -3493,35 +3129,29 @@ __webpack_require__.r(__webpack_exports__);
 /* eslint-env browser, node */
 
 
+
 /* istanbul ignore next */
-
 var _global = typeof self === 'undefined' ? __webpack_require__.g : self;
-
 var typedArrays = {};
 ['Int8Array', 'Uint8Array', 'Uint8ClampedArray', 'Int16Array', 'Uint16Array', 'Int32Array', 'Uint32Array', 'Float32Array', 'Float64Array'].forEach(function (typeName) {
   var arrType = typeName;
   var TypedArray = _global[arrType];
   /* istanbul ignore if */
-
   if (!TypedArray) {
     return;
   }
-
   typedArrays[typeName.toLowerCase()] = {
     test: function test(x) {
       return typeson__WEBPACK_IMPORTED_MODULE_0___default().toStringTag(x) === arrType;
     },
     replace: function replace(_ref, stateObj) {
       var buffer = _ref.buffer,
-          byteOffset = _ref.byteOffset,
-          l = _ref.length;
-
+        byteOffset = _ref.byteOffset,
+        l = _ref.length;
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       var index = stateObj.buffers.indexOf(buffer);
-
       if (index > -1) {
         return {
           index: index,
@@ -3529,7 +3159,6 @@ var typedArrays = {};
           length: l
         };
       }
-
       stateObj.buffers.push(buffer);
       return {
         encoded: (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.encode)(buffer),
@@ -3541,20 +3170,17 @@ var typedArrays = {};
       if (!stateObj.buffers) {
         stateObj.buffers = [];
       }
-
       var byteOffset = b64Obj.byteOffset,
-          len = b64Obj.length,
-          encoded = b64Obj.encoded,
-          index = b64Obj.index;
+        len = b64Obj.length,
+        encoded = b64Obj.encoded,
+        index = b64Obj.index;
       var buffer;
-
       if ('index' in b64Obj) {
         buffer = stateObj.buffers[index];
       } else {
         buffer = (0,base64_arraybuffer_es6__WEBPACK_IMPORTED_MODULE_1__.decode)(encoded);
         stateObj.buffers.push(buffer);
       }
-
       return new TypedArray(buffer, byteOffset, len);
     }
   };
@@ -3619,7 +3245,6 @@ __webpack_require__.r(__webpack_exports__);
 var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'; // Use a lookup table to find the index.
 
 var lookup = new Uint8Array(256);
-
 for (var i = 0; i < chars.length; i++) {
   lookup[chars.charCodeAt(i)] = i;
 }
@@ -3630,30 +3255,27 @@ for (var i = 0; i < chars.length; i++) {
  * @returns {string}
  */
 
-
 var encode = function encode(arraybuffer, byteOffset, lngth) {
   if (lngth === null || lngth === undefined) {
     lngth = arraybuffer.byteLength; // Needed for Safari
   }
 
-  var bytes = new Uint8Array(arraybuffer, byteOffset || 0, // Default needed for Safari
+  var bytes = new Uint8Array(arraybuffer, byteOffset || 0,
+  // Default needed for Safari
   lngth);
   var len = bytes.length;
   var base64 = '';
-
   for (var _i = 0; _i < len; _i += 3) {
     base64 += chars[bytes[_i] >> 2];
     base64 += chars[(bytes[_i] & 3) << 4 | bytes[_i + 1] >> 4];
     base64 += chars[(bytes[_i + 1] & 15) << 2 | bytes[_i + 2] >> 6];
     base64 += chars[bytes[_i + 2] & 63];
   }
-
   if (len % 3 === 2) {
     base64 = base64.slice(0, -1) + '=';
   } else if (len % 3 === 1) {
     base64 = base64.slice(0, -2) + '==';
   }
-
   return base64;
 };
 /**
@@ -3661,24 +3283,19 @@ var encode = function encode(arraybuffer, byteOffset, lngth) {
  * @returns {ArrayBuffer}
  */
 
-
 var decode = function decode(base64) {
   var len = base64.length;
   var bufferLength = base64.length * 0.75;
   var p = 0;
   var encoded1, encoded2, encoded3, encoded4;
-
   if (base64[base64.length - 1] === '=') {
     bufferLength--;
-
     if (base64[base64.length - 2] === '=') {
       bufferLength--;
     }
   }
-
   var arraybuffer = new ArrayBuffer(bufferLength),
-      bytes = new Uint8Array(arraybuffer);
-
+    bytes = new Uint8Array(arraybuffer);
   for (var _i2 = 0; _i2 < len; _i2 += 4) {
     encoded1 = lookup[base64.charCodeAt(_i2)];
     encoded2 = lookup[base64.charCodeAt(_i2 + 1)];
@@ -3688,10 +3305,8 @@ var decode = function decode(base64) {
     bytes[p++] = (encoded2 & 15) << 4 | encoded3 >> 2;
     bytes[p++] = (encoded3 & 3) << 6 | encoded4 & 63;
   }
-
   return arraybuffer;
 };
-
 
 
 /***/ }),
@@ -3702,8 +3317,8 @@ var decode = function decode(base64) {
   \***************************************************************************************************************************************************/
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
-
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof2(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
+function _typeof2(obj) { "@babel/helpers - typeof"; return _typeof2 = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof2(obj); }
 (function (global, factory) {
   ( false ? 0 : _typeof2(exports)) === 'object' && "object" !== 'undefined' ? module.exports = factory() :  true ? !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
@@ -3723,10 +3338,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
         return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
       };
     }
-
     return _typeof(obj);
   }
-
   function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     try {
       var info = gen[key](arg);
@@ -3735,40 +3348,33 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       reject(error);
       return;
     }
-
     if (info.done) {
       resolve(value);
     } else {
       Promise.resolve(value).then(_next, _throw);
     }
   }
-
   function _asyncToGenerator(fn) {
     return function () {
       var self = this,
-          args = arguments;
+        args = arguments;
       return new Promise(function (resolve, reject) {
         var gen = fn.apply(self, args);
-
         function _next(value) {
           asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
         }
-
         function _throw(err) {
           asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
         }
-
         _next(undefined);
       });
     };
   }
-
   function _classCallCheck(instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   }
-
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
       var descriptor = props[i];
@@ -3778,13 +3384,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       Object.defineProperty(target, descriptor.key, descriptor);
     }
   }
-
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
     return Constructor;
   }
-
   function _defineProperty(obj, key, value) {
     if (key in obj) {
       Object.defineProperty(obj, key, {
@@ -3796,13 +3400,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
     } else {
       obj[key] = value;
     }
-
     return obj;
   }
-
   function ownKeys(object, enumerableOnly) {
     var keys = Object.keys(object);
-
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
       if (enumerableOnly) symbols = symbols.filter(function (sym) {
@@ -3810,14 +3411,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       });
       keys.push.apply(keys, symbols);
     }
-
     return keys;
   }
-
   function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
-
       if (i % 2) {
         ownKeys(Object(source), true).forEach(function (key) {
           _defineProperty(target, key, source[key]);
@@ -3830,50 +3428,37 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
         });
       }
     }
-
     return target;
   }
-
   function _slicedToArray(arr, i) {
     return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
   }
-
   function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
   }
-
   function _arrayWithoutHoles(arr) {
     if (Array.isArray(arr)) {
-      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-        arr2[i] = arr[i];
-      }
-
+      for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
       return arr2;
     }
   }
-
   function _arrayWithHoles(arr) {
     if (Array.isArray(arr)) return arr;
   }
-
   function _iterableToArray(iter) {
     if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
   }
-
   function _iterableToArrayLimit(arr, i) {
     if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
       return;
     }
-
     var _arr = [];
     var _n = true;
     var _d = false;
     var _e = undefined;
-
     try {
       for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
         _arr.push(_s.value);
-
         if (i && _arr.length === i) break;
       }
     } catch (err) {
@@ -3886,17 +3471,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
         if (_d) throw _e;
       }
     }
-
     return _arr;
   }
-
   function _nonIterableSpread() {
     throw new TypeError("Invalid attempt to spread non-iterable instance");
   }
-
   function _nonIterableRest() {
     throw new TypeError("Invalid attempt to destructure non-iterable instance");
   }
+
   /**
    * We keep this function minimized so if using two instances of this
    *   library, where one is minimized and one is not, it will still work
@@ -3907,15 +3490,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    */
   // eslint-disable-next-line max-len
   // eslint-disable-next-line block-spacing, space-before-function-paren, space-before-blocks, space-infix-ops, semi, promise/avoid-new
-
-
   var TypesonPromise = function TypesonPromise(f) {
     _classCallCheck(this, TypesonPromise);
-
     this.p = new Promise(f);
   }; // eslint-disable-next-line max-len
   // class TypesonPromise extends Promise {get[Symbol.toStringTag](){return 'TypesonPromise'};} // eslint-disable-line keyword-spacing, space-before-function-paren, space-before-blocks, block-spacing, semi
-
 
   TypesonPromise.__typeson__type__ = 'TypesonPromise'; // Note: core-js-bundle provides a `Symbol` polyfill
 
@@ -3932,10 +3511,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {TypesonPromise}
    */
 
-
   TypesonPromise.prototype.then = function (onFulfilled, onRejected) {
     var _this = this;
-
     return new TypesonPromise(function (typesonResolve, typesonReject) {
       // eslint-disable-next-line promise/catch-or-return
       _this.p.then(function (res) {
@@ -3952,7 +3529,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {TypesonPromise}
    */
 
-
   TypesonPromise.prototype["catch"] = function (onRejected) {
     return this.then(null, onRejected);
   };
@@ -3961,7 +3537,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @param {Any} v
    * @returns {TypesonPromise}
    */
-
 
   TypesonPromise.resolve = function (v) {
     return new TypesonPromise(function (typesonResolve) {
@@ -3974,13 +3549,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {TypesonPromise}
    */
 
-
   TypesonPromise.reject = function (v) {
     return new TypesonPromise(function (typesonResolve, typesonReject) {
       typesonReject(v);
     });
   };
-
   ['all', 'race'].forEach(function (meth) {
     /**
      *
@@ -3997,10 +3570,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
     };
   });
   var _ref = {},
-      toStr = _ref.toString,
-      hasOwn = {}.hasOwnProperty,
-      getProto = Object.getPrototypeOf,
-      fnToString = hasOwn.toString;
+    toStr = _ref.toString,
+    hasOwn = {}.hasOwnProperty,
+    getProto = Object.getPrototypeOf,
+    fnToString = hasOwn.toString;
   /**
    * Second argument not in use internally, but provided for utility.
    * @param {Any} v
@@ -4017,7 +3590,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {string}
    */
 
-
   function toStringTag(val) {
     return toStr.call(val).slice(8, -1);
   }
@@ -4029,36 +3601,27 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {boolean}
    */
 
-
   function hasConstructorOf(a, b) {
     if (!a || _typeof(a) !== 'object') {
       return false;
     }
-
     var proto = getProto(a);
-
     if (!proto) {
       return b === null;
     }
-
     var Ctor = hasOwn.call(proto, 'constructor') && proto.constructor;
-
     if (typeof Ctor !== 'function') {
       return b === null;
     }
-
     if (b === Ctor) {
       return true;
     }
-
     if (b !== null && fnToString.call(Ctor) === fnToString.call(b)) {
       return true;
     }
-
     if (typeof b === 'function' && typeof Ctor.__typeson__type__ === 'string' && Ctor.__typeson__type__ === b.__typeson__type__) {
       return true;
     }
-
     return false;
   }
   /**
@@ -4067,20 +3630,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {boolean}
    */
 
-
   function isPlainObject(val) {
     // Mirrors jQuery's
     if (!val || toStringTag(val) !== 'Object') {
       return false;
     }
-
     var proto = getProto(val);
-
     if (!proto) {
       // `Object.create(null)`
       return true;
     }
-
     return hasConstructorOf(val, Object);
   }
   /**
@@ -4089,19 +3648,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {boolean}
    */
 
-
   function isUserObject(val) {
     if (!val || toStringTag(val) !== 'Object') {
       return false;
     }
-
     var proto = getProto(val);
-
     if (!proto) {
       // `Object.create(null)`
       return true;
     }
-
     return hasConstructorOf(val, Object) || isUserObject(proto);
   }
   /**
@@ -4109,7 +3664,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @param {Any} v
    * @returns {boolean}
    */
-
 
   function isObject(v) {
     return v && _typeof(v) === 'object';
@@ -4120,7 +3674,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {string}
    */
 
-
   function escapeKeyPathComponent(keyPathComponent) {
     return keyPathComponent.replace(/~/g, '~0').replace(/\./g, '~1');
   }
@@ -4129,7 +3682,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @param {string} keyPathComponent
    * @returns {string}
    */
-
 
   function unescapeKeyPathComponent(keyPathComponent) {
     return keyPathComponent.replace(/~1/g, '.').replace(/~0/g, '~');
@@ -4140,19 +3692,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {Any}
    */
 
-
   function getByKeyPath(obj, keyPath) {
     if (keyPath === '') {
       return obj;
     }
-
     var period = keyPath.indexOf('.');
-
     if (period > -1) {
       var innerObj = obj[unescapeKeyPathComponent(keyPath.slice(0, period))];
       return innerObj === undefined ? undefined : getByKeyPath(innerObj, keyPath.slice(period + 1));
     }
-
     return obj[unescapeKeyPathComponent(keyPath)];
   }
   /**
@@ -4163,19 +3711,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @returns {Any}
    */
 
-
   function setAtKeyPath(obj, keyPath, value) {
     if (keyPath === '') {
       return value;
     }
-
     var period = keyPath.indexOf('.');
-
     if (period > -1) {
       var innerObj = obj[unescapeKeyPathComponent(keyPath.slice(0, period))];
       return setAtKeyPath(innerObj, keyPath.slice(period + 1), value);
     }
-
     obj[unescapeKeyPathComponent(keyPath)] = value;
     return obj;
   }
@@ -4186,15 +3730,13 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    *  "object"|"symbol"}
    */
 
-
   function getJSONType(value) {
     return value === null ? 'null' : Array.isArray(value) ? 'array' : _typeof(value);
   }
-
   var keys = Object.keys,
-      isArray = Array.isArray,
-      hasOwn$1 = {}.hasOwnProperty,
-      internalStateObjPropsToIgnore = ['type', 'replaced', 'iterateIn', 'iterateUnsetNumeric'];
+    isArray = Array.isArray,
+    hasOwn$1 = {}.hasOwnProperty,
+    internalStateObjPropsToIgnore = ['type', 'replaced', 'iterateIn', 'iterateUnsetNumeric'];
   /**
    * Handle plain object revivers first so reference setting can use
    * revived type (e.g., array instead of object); assumes revived
@@ -4208,18 +3750,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
     if (a.keypath === '') {
       return -1;
     }
-
     var as = a.keypath.match(/\./g) || 0;
     var bs = b.keypath.match(/\./g) || 0;
-
     if (as) {
       as = as.length;
     }
-
     if (bs) {
       bs = bs.length;
     }
-
     return as > bs ? -1 : as < bs ? 1 : a.keypath < b.keypath ? -1 : a.keypath > b.keypath;
   }
   /**
@@ -4232,11 +3770,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    *   cyclic references will be handled gracefully.
    */
 
-
-  var Typeson = /*#__PURE__*/function () {
+  var Typeson = /*#__PURE__*/
+  function () {
     function Typeson(options) {
       _classCallCheck(this, Typeson);
-
       this.options = options; // Replacers signature: replace (value). Returns falsy if not
       //   replacing. Otherwise ['Date', value.getTime()]
 
@@ -4272,7 +3809,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
      * @returns {string|Promise} Promise resolves to a string
      */
 
-
     _createClass(Typeson, [{
       key: "stringify",
       value: function stringify(obj, replacer, space, opts) {
@@ -4280,11 +3816,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           stringification: true
         });
         var encapsulated = this.encapsulate(obj, null, opts);
-
         if (isArray(encapsulated)) {
           return JSON.stringify(encapsulated[0], replacer, space);
         }
-
         return encapsulated.then(function (res) {
           return JSON.stringify(res, replacer, space);
         });
@@ -4297,7 +3831,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {string}
        */
-
     }, {
       key: "stringifySync",
       value: function stringifySync(obj, replacer, space, opts) {
@@ -4315,7 +3848,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {Promise<string>}
        */
-
     }, {
       key: "stringifyAsync",
       value: function stringifyAsync(obj, replacer, space, opts) {
@@ -4334,7 +3866,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {external:JSON}
        */
-
     }, {
       key: "parse",
       value: function parse(text, reviver, opts) {
@@ -4351,7 +3882,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       * @param {object} opts
       * @returns {external:JSON}
       */
-
     }, {
       key: "parseSync",
       value: function parseSync(text, reviver, opts) {
@@ -4368,7 +3898,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       * @param {object} opts
       * @returns {Promise} Resolves to `external:JSON`
       */
-
     }, {
       key: "parseAsync",
       value: function parseAsync(text, reviver, opts) {
@@ -4385,7 +3914,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} [opts={}]
        * @returns {string[]|false}
        */
-
     }, {
       key: "specialTypeNames",
       value: function specialTypeNames(obj, stateObj) {
@@ -4400,7 +3928,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {PlainObject} [opts={}]
        * @returns {Promise|GenericArray|PlainObject|string|false}
        */
-
     }, {
       key: "rootTypeName",
       value: function rootTypeName(obj, stateObj) {
@@ -4418,7 +3945,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {PlainObject} opts
        * @returns {Promise|GenericArray|PlainObject|string|false}
        */
-
     }, {
       key: "encapsulate",
       value: function encapsulate(obj, stateObj, opts) {
@@ -4426,20 +3952,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           sync: true
         }, this.options, {}, opts);
         var _opts = opts,
-            sync = _opts.sync;
+          sync = _opts.sync;
         var that = this,
-            types = {},
-            refObjs = [],
-            // For checking cyclic references
-        refKeys = [],
-            // For checking cyclic references
-        promisesDataRoot = []; // Clone the object deeply while at the same time replacing any
+          types = {},
+          refObjs = [],
+          // For checking cyclic references
+          refKeys = [],
+          // For checking cyclic references
+          promisesDataRoot = []; // Clone the object deeply while at the same time replacing any
         //   special types or cyclic reference:
 
         var cyclic = 'cyclic' in opts ? opts.cyclic : true;
         var _opts2 = opts,
-            encapsulateObserver = _opts2.encapsulateObserver;
-
+          encapsulateObserver = _opts2.encapsulateObserver;
         var ret = _encapsulate('', obj, cyclic, stateObj || {}, promisesDataRoot);
         /**
          *
@@ -4447,28 +3972,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {GenericArray|PlainObject|string|false}
          */
 
-
         function finish(ret) {
           // Add `$types` to result only if we ever bumped into a
           //  special type (or special case where object has own `$types`)
           var typeNames = Object.values(types);
-
           if (opts.iterateNone) {
             if (typeNames.length) {
               return typeNames[0];
             }
-
             return Typeson.getJSONType(ret);
           }
-
           if (typeNames.length) {
             if (opts.returnTypeNames) {
               return _toConsumableArray(new Set(typeNames));
             } // Special if array (or a primitive) was serialized
             //   because JSON would ignore custom `$types` prop on it
 
-
-            if (!ret || !isPlainObject(ret) || // Also need to handle if this is an object with its
+            if (!ret || !isPlainObject(ret) ||
+            // Also need to handle if this is an object with its
             //   own `$types` property (to avoid ambiguity)
             hasOwn$1.call(ret, '$types')) {
               ret = {
@@ -4480,18 +4001,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
             } else {
               ret.$types = types;
             } // No special types
-
           } else if (isObject(ret) && hasOwn$1.call(ret, '$types')) {
             ret = {
               $: ret,
               $types: true
             };
           }
-
           if (opts.returnTypeNames) {
             return false;
           }
-
           return ret;
         }
         /**
@@ -4500,7 +4018,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @param {GenericArray} promisesData
          * @returns {Promise<Any>}
          */
-
 
         function checkPromises(_x, _x2) {
           return _checkPromises.apply(this, arguments);
@@ -4513,11 +4030,11 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {undefined}
          */
 
-
         function _checkPromises() {
-          _checkPromises = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(ret, promisesData) {
+          _checkPromises = _asyncToGenerator( /*#__PURE__*/
+          _regeneratorRuntime().mark(function _callee2(ret, promisesData) {
             var promResults;
-            return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            return _regeneratorRuntime().wrap(function _callee2$(_context2) {
               while (1) {
                 switch (_context2.prev = _context2.next) {
                   case 0:
@@ -4525,15 +4042,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                     return Promise.all(promisesData.map(function (pd) {
                       return pd[1].p;
                     }));
-
                   case 2:
                     promResults = _context2.sent;
                     _context2.next = 5;
-                    return Promise.all(promResults.map( /*#__PURE__*/function () {
-                      var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(promResult) {
+                    return Promise.all(promResults.map( /*#__PURE__*/
+                    function () {
+                      var _ref = _asyncToGenerator( /*#__PURE__*/
+                      _regeneratorRuntime().mark(function _callee(promResult) {
                         var newPromisesData, _promisesData$splice, _promisesData$splice2, prData, _prData, keyPath, cyclic, stateObj, parentObj, key, detectedType, encaps, isTypesonPromise, encaps2;
-
-                        return regeneratorRuntime.wrap(function _callee$(_context) {
+                        return _regeneratorRuntime().wrap(function _callee$(_context) {
                           while (1) {
                             switch (_context.prev = _context.next) {
                               case 0:
@@ -4548,15 +4065,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                                   _context.next = 11;
                                   break;
                                 }
-
                                 _context.next = 8;
                                 return encaps.p;
-
                               case 8:
                                 encaps2 = _context.sent;
                                 parentObj[key] = encaps2;
                                 return _context.abrupt("return", checkPromises(ret, newPromisesData));
-
                               case 11:
                                 if (keyPath) {
                                   parentObj[key] = encaps;
@@ -4572,9 +4086,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                                   //   as the resolve value)
                                   ret = encaps;
                                 }
-
                                 return _context.abrupt("return", checkPromises(ret, newPromisesData));
-
                               case 13:
                               case "end":
                                 return _context.stop();
@@ -4582,15 +4094,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                           }
                         }, _callee);
                       }));
-
                       return function (_x3) {
                         return _ref.apply(this, arguments);
                       };
                     }()));
-
                   case 5:
                     return _context2.abrupt("return", ret);
-
                   case 6:
                   case "end":
                     return _context2.stop();
@@ -4600,7 +4109,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           }));
           return _checkPromises.apply(this, arguments);
         }
-
         function _adaptBuiltinStateObjectProperties(stateObj, ownKeysObj, cb) {
           Object.assign(stateObj, ownKeysObj);
           var vals = internalStateObjPropsToIgnore.map(function (prop) {
@@ -4626,13 +4134,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {Any}
          */
 
-
         function _encapsulate(keypath, value, cyclic, stateObj, promisesData, resolvingTypesonPromise, detectedType) {
           var ret;
           var observerData = {};
-
           var $typeof = _typeof(value);
-
           var runObserver = encapsulateObserver ? function (obj) {
             var type = detectedType || stateObj.type || Typeson.getJSONType(value);
             encapsulateObserver(Object.assign(obj || observerData, {
@@ -4647,7 +4152,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               type: type
             }));
           } : null;
-
           if (['string', 'boolean', 'number', 'undefined'].includes($typeof)) {
             if (value === undefined || $typeof === 'number' && (isNaN(value) || value === -Infinity || value === Infinity)) {
               if (stateObj.replaced) {
@@ -4655,7 +4159,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               } else {
                 ret = replace(keypath, value, stateObj, promisesData, false, resolvingTypesonPromise, runObserver);
               }
-
               if (ret !== value) {
                 observerData = {
                   replaced: ret
@@ -4664,27 +4167,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
             } else {
               ret = value;
             }
-
             if (runObserver) {
               runObserver();
             }
-
             return ret;
           }
-
           if (value === null) {
             if (runObserver) {
               runObserver();
             }
-
             return value;
           }
-
           if (cyclic && !stateObj.iterateIn && !stateObj.iterateUnsetNumeric && value && _typeof(value) === 'object') {
             // Options set to detect cyclic references and be able
             //   to rewrite them.
             var refIndex = refObjs.indexOf(value);
-
             if (refIndex < 0) {
               if (cyclic === true) {
                 refObjs.push(value);
@@ -4692,26 +4189,24 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               }
             } else {
               types[keypath] = '#';
-
               if (runObserver) {
                 runObserver({
                   cyclicKeypath: refKeys[refIndex]
                 });
               }
-
               return '#' + refKeys[refIndex];
             }
           }
-
           var isPlainObj = isPlainObject(value);
           var isArr = isArray(value);
-          var replaced = // Running replace will cause infinite loop as will test
+          var replaced =
+          // Running replace will cause infinite loop as will test
           //   positive again
-          (isPlainObj || isArr) && (!that.plainObjectReplacers.length || stateObj.replaced) || stateObj.iterateIn ? // Optimization: if plain object and no plain-object
+          (isPlainObj || isArr) && (!that.plainObjectReplacers.length || stateObj.replaced) || stateObj.iterateIn ?
+          // Optimization: if plain object and no plain-object
           //   replacers, don't try finding a replacer
           value : replace(keypath, value, stateObj, promisesData, isPlainObj || isArr, null, runObserver);
           var clone;
-
           if (replaced !== value) {
             ret = replaced;
             observerData = {
@@ -4729,11 +4224,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               };
             } else if (!['function', 'symbol'].includes(_typeof(value)) && !('toJSON' in value) && !hasConstructorOf(value, TypesonPromise) && !hasConstructorOf(value, Promise) && !hasConstructorOf(value, ArrayBuffer) || isPlainObj || stateObj.iterateIn === 'object') {
               clone = {};
-
               if (stateObj.addLength) {
                 clone.length = value.length;
               }
-
               observerData = {
                 clone: clone
               };
@@ -4745,40 +4238,33 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           if (runObserver) {
             runObserver();
           }
-
           if (opts.iterateNone) {
             return clone || ret;
           }
-
           if (!clone) {
             return ret;
           } // Iterate object or array
-
 
           if (stateObj.iterateIn) {
             var _loop = function _loop(key) {
               var ownKeysObj = {
                 ownKeys: hasOwn$1.call(value, key)
               };
-
               _adaptBuiltinStateObjectProperties(stateObj, ownKeysObj, function () {
                 var kp = keypath + (keypath ? '.' : '') + escapeKeyPathComponent(key);
-
                 var val = _encapsulate(kp, value[key], Boolean(cyclic), stateObj, promisesData, resolvingTypesonPromise);
-
                 if (hasConstructorOf(val, TypesonPromise)) {
                   promisesData.push([kp, val, Boolean(cyclic), stateObj, clone, key, stateObj.type]);
                 } else if (val !== undefined) {
                   clone[key] = val;
                 }
               });
-            }; // eslint-disable-next-line guard-for-in
+            };
 
-
+            // eslint-disable-next-line guard-for-in
             for (var key in value) {
               _loop(key);
             }
-
             if (runObserver) {
               runObserver({
                 endIterateIn: true,
@@ -4795,10 +4281,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               var ownKeysObj = {
                 ownKeys: true
               };
-
               _adaptBuiltinStateObjectProperties(stateObj, ownKeysObj, function () {
                 var val = _encapsulate(kp, value[key], Boolean(cyclic), stateObj, promisesData, resolvingTypesonPromise);
-
                 if (hasConstructorOf(val, TypesonPromise)) {
                   promisesData.push([kp, val, Boolean(cyclic), stateObj, clone, key, stateObj.type]);
                 } else if (val !== undefined) {
@@ -4806,7 +4290,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                 }
               });
             });
-
             if (runObserver) {
               runObserver({
                 endIterateOwn: true,
@@ -4817,10 +4300,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           //   replace the prior loop though as it iterates non-integer
           //   keys)
 
-
           if (stateObj.iterateUnsetNumeric) {
             var vl = value.length;
-
             var _loop2 = function _loop2(i) {
               if (!(i in value)) {
                 // No need to escape numeric
@@ -4828,10 +4309,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                 var ownKeysObj = {
                   ownKeys: false
                 };
-
                 _adaptBuiltinStateObjectProperties(stateObj, ownKeysObj, function () {
                   var val = _encapsulate(kp, undefined, Boolean(cyclic), stateObj, promisesData, resolvingTypesonPromise);
-
                   if (hasConstructorOf(val, TypesonPromise)) {
                     promisesData.push([kp, val, Boolean(cyclic), stateObj, clone, i, stateObj.type]);
                   } else if (val !== undefined) {
@@ -4840,11 +4319,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                 });
               }
             };
-
             for (var i = 0; i < vl; i++) {
               _loop2(i);
             }
-
             if (runObserver) {
               runObserver({
                 endIterateUnsetNumeric: true,
@@ -4852,7 +4329,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               });
             }
           }
-
           return clone;
         }
         /**
@@ -4867,18 +4343,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {*}
          */
 
-
         function replace(keypath, value, stateObj, promisesData, plainObject, resolvingTypesonPromise, runObserver) {
           // Encapsulate registered types
           var replacers = plainObject ? that.plainObjectReplacers : that.nonplainObjectReplacers;
           var i = replacers.length;
-
           while (i--) {
             var replacer = replacers[i];
-
             if (replacer.test(value, stateObj)) {
               var type = replacer.type;
-
               if (that.revivers[type]) {
                 // Record the type only if a corresponding reviver
                 //   exists. This is to support specs where only
@@ -4891,22 +4363,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
 
                 types[keypath] = existing ? [type].concat(existing) : type;
               }
-
               Object.assign(stateObj, {
                 type: type,
                 replaced: true
               });
-
               if ((sync || !replacer.replaceAsync) && !replacer.replace) {
                 if (runObserver) {
                   runObserver({
                     typeDetected: true
                   });
                 }
-
                 return _encapsulate(keypath, value, cyclic && 'readonly', stateObj, promisesData, resolvingTypesonPromise, type);
               }
-
               if (runObserver) {
                 runObserver({
                   replacing: true
@@ -4914,15 +4382,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               } // Now, also traverse the result in case it contains its
               //   own types to replace
 
-
               var replaceMethod = sync || !replacer.replaceAsync ? 'replace' : 'replaceAsync';
               return _encapsulate(keypath, replacer[replaceMethod](value, stateObj), cyclic && 'readonly', stateObj, promisesData, resolvingTypesonPromise, type);
             }
           }
-
           return value;
         }
-
         return promisesDataRoot.length ? sync && opts.throwOnBadSyncType ? function () {
           throw new TypeError('Sync method requested but async result obtained');
         }() : Promise.resolve(checkPromises(ret, promisesDataRoot)).then(finish) : !sync && opts.throwOnBadSyncType ? function () {
@@ -4940,7 +4405,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {*}
        */
-
     }, {
       key: "encapsulateSync",
       value: function encapsulateSync(obj, stateObj, opts) {
@@ -4956,7 +4420,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {*}
        */
-
     }, {
       key: "encapsulateAsync",
       value: function encapsulateAsync(obj, stateObj, opts) {
@@ -4976,7 +4439,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @throws TypeError If mismatch between sync/async type and result
        * @returns {Promise|*} If async, returns a Promise that resolves to `*`
        */
-
     }, {
       key: "revive",
       value: function revive(obj, opts) {
@@ -4987,16 +4449,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
         } // Object happened to have own `$types` property but with
         //   no actual types, so we unescape and return that object
 
-
         if (types === true) {
           return obj.$;
         }
-
         opts = _objectSpread2({
           sync: true
         }, this.options, {}, opts);
         var _opts3 = opts,
-            sync = _opts3.sync;
+          sync = _opts3.sync;
         var keyPathResolutions = [];
         var stateObj = {};
         var ignore$Types = true; // Special when root object is not a trivial Object, it will
@@ -5008,7 +4468,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           types = types.$;
           ignore$Types = false;
         }
-
         var that = this;
         /**
          * @callback RevivalReducer
@@ -5026,9 +4485,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
 
         function executeReviver(type, val) {
           var _ref2 = that.revivers[type] || [],
-              _ref3 = _slicedToArray(_ref2, 1),
-              reviver = _ref3[0];
-
+            _ref3 = _slicedToArray(_ref2, 1),
+            reviver = _ref3[0];
           if (!reviver) {
             throw new Error('Unregistered type: ' + type);
           } // Only `sync` expected here, as problematic async would
@@ -5036,12 +4494,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           //  encapsulation shouldn't have added types, so
           //  should have made an early exit
 
-
           if (sync && !('revive' in reviver)) {
             // Just return value as is
             return val;
           }
-
           return reviver[sync && reviver.revive ? 'revive' : !sync && reviver.reviveAsync ? 'reviveAsync' : 'revive'](val, stateObj);
         }
         /**
@@ -5049,16 +4505,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {void|TypesonPromise<void>}
          */
 
-
         function revivePlainObjects() {
           // const references = [];
           // const reviveTypes = [];
           var plainObjectTypes = [];
           Object.entries(types).forEach(function (_ref4) {
             var _ref5 = _slicedToArray(_ref4, 2),
-                keypath = _ref5[0],
-                type = _ref5[1];
-
+              keypath = _ref5[0],
+              type = _ref5[1];
             if (type === '#') {
               /*
               references.push({
@@ -5068,17 +4522,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               */
               return;
             }
-
             [].concat(type).forEach(function (type) {
               var _ref6 = that.revivers[type] || [null, {}],
-                  _ref7 = _slicedToArray(_ref6, 2),
-                  plain = _ref7[1].plain;
-
+                _ref7 = _slicedToArray(_ref6, 2),
+                plain = _ref7[1].plain;
               if (!plain) {
                 // reviveTypes.push({keypath, type});
                 return;
               }
-
               plainObjectTypes.push({
                 keypath: keypath,
                 type: type
@@ -5097,11 +4548,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           * @property {string} type
           */
 
-
           return plainObjectTypes.sort(nestedPathsFirst).reduce(function reducer(possibleTypesonPromise, _ref8) {
             var keypath = _ref8.keypath,
-                type = _ref8.type;
-
+              type = _ref8.type;
             if (isThenable(possibleTypesonPromise)) {
               return possibleTypesonPromise.then(function (val) {
                 return reducer(val, {
@@ -5111,28 +4560,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               });
             } // console.log('obj', JSON.stringify(keypath), obj);
 
-
             var val = getByKeyPath(obj, keypath);
             val = executeReviver(type, val);
-
             if (hasConstructorOf(val, TypesonPromise)) {
               return val.then(function (v) {
                 var newVal = setAtKeyPath(obj, keypath, v);
-
                 if (newVal === v) {
                   obj = newVal;
                 }
-
                 return undefined;
               });
             }
-
             var newVal = setAtKeyPath(obj, keypath, val);
-
             if (newVal === val) {
               obj = newVal;
             }
-
             return undefined;
           }, undefined // This argument must be explicit
           ); // references.forEach(({keypath, reference}) => {});
@@ -5154,27 +4596,21 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
           if (ignore$Types && keypath === '$types') {
             return undefined;
           }
-
           var type = types[keypath];
           var isArr = isArray(value);
-
           if (isArr || isPlainObject(value)) {
             var _clone = isArr ? new Array(value.length) : {}; // Iterate object or array
 
-
             keys(value).forEach(function (k) {
               var val = _revive(keypath + (keypath ? '.' : '') + escapeKeyPathComponent(k), value[k], target || _clone, _clone, k);
-
               var set = function set(v) {
                 if (hasConstructorOf(v, Undefined)) {
                   _clone[k] = undefined;
                 } else if (v !== undefined) {
                   _clone[k] = v;
                 }
-
                 return v;
               };
-
               if (hasConstructorOf(val, TypesonPromise)) {
                 revivalPromises.push(val.then(function (ret) {
                   return set(ret);
@@ -5187,11 +4623,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
 
             while (keyPathResolutions.length) {
               var _keyPathResolutions$ = _slicedToArray(keyPathResolutions[0], 4),
-                  _target = _keyPathResolutions$[0],
-                  keyPath = _keyPathResolutions$[1],
-                  _clone2 = _keyPathResolutions$[2],
-                  k = _keyPathResolutions$[3];
-
+                _target = _keyPathResolutions$[0],
+                keyPath = _keyPathResolutions$[1],
+                _clone2 = _keyPathResolutions$[2],
+                k = _keyPathResolutions$[3];
               var val = getByKeyPath(_target, keyPath); // Typeson.Undefined not expected here as not cyclic or
               //   `undefined`
 
@@ -5200,26 +4635,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               } else {
                 break;
               }
-
               keyPathResolutions.splice(0, 1);
             }
           }
-
           if (!type) {
             return value;
           }
-
           if (type === '#') {
             var _ret = getByKeyPath(target, value.slice(1));
-
             if (_ret === undefined) {
               // Cyclic reference not yet available
               keyPathResolutions.push([target, value.slice(1), clone, key]);
             }
-
             return _ret;
           } // `type` can be an array here
-
 
           return [].concat(type).reduce(function reducer(val, typ) {
             if (hasConstructorOf(val, TypesonPromise)) {
@@ -5228,7 +4657,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
                 return reducer(v, typ);
               });
             }
-
             return executeReviver(typ, val);
           }, value);
         }
@@ -5238,35 +4666,30 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
          * @returns {undefined|Any}
          */
 
-
         function checkUndefined(retrn) {
           return hasConstructorOf(retrn, Undefined) ? undefined : retrn;
         }
-
         var possibleTypesonPromise = revivePlainObjects();
         var ret;
-
         if (hasConstructorOf(possibleTypesonPromise, TypesonPromise)) {
           ret = possibleTypesonPromise.then(function () {
             return obj;
           });
         } else {
           ret = _revive('', obj, null);
-
           if (revivalPromises.length) {
             // Ensure children resolved
             ret = TypesonPromise.resolve(ret).then(function (r) {
-              return TypesonPromise.all([// May be a TypesonPromise or not
+              return TypesonPromise.all([
+              // May be a TypesonPromise or not
               r].concat(revivalPromises));
             }).then(function (_ref9) {
               var _ref10 = _slicedToArray(_ref9, 1),
-                  r = _ref10[0];
-
+                r = _ref10[0];
               return r;
             });
           }
         }
-
         return isThenable(ret) ? sync && opts.throwOnBadSyncType ? function () {
           throw new TypeError('Sync method requested but async result obtained');
         }() : hasConstructorOf(ret, TypesonPromise) ? ret.p.then(checkUndefined) : ret : !sync && opts.throwOnBadSyncType ? function () {
@@ -5279,7 +4702,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {Any}
        */
-
     }, {
       key: "reviveSync",
       value: function reviveSync(obj, opts) {
@@ -5294,7 +4716,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
       * @param {object} opts
       * @returns {Promise} Resolves to `*`
       */
-
     }, {
       key: "reviveAsync",
       value: function reviveAsync(obj, opts) {
@@ -5313,41 +4734,36 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
        * @param {object} opts
        * @returns {Typeson}
        */
-
     }, {
       key: "register",
       value: function register(typeSpecSets, opts) {
         opts = opts || {};
         [].concat(typeSpecSets).forEach(function R(typeSpec) {
-          var _this = this; // Allow arrays of arrays of arrays...
+          var _this = this;
 
-
+          // Allow arrays of arrays of arrays...
           if (isArray(typeSpec)) {
             return typeSpec.map(function (typSpec) {
               return R.call(_this, typSpec);
             });
           }
-
           typeSpec && keys(typeSpec).forEach(function (typeId) {
             if (typeId === '#') {
               throw new TypeError('# cannot be used as a type name as it is reserved ' + 'for cyclic objects');
             } else if (Typeson.JSON_TYPES.includes(typeId)) {
               throw new TypeError('Plain JSON object types are reserved as type names');
             }
-
             var spec = typeSpec[typeId];
             var replacers = spec && spec.testPlainObjects ? this.plainObjectReplacers : this.nonplainObjectReplacers;
             var existingReplacer = replacers.filter(function (r) {
               return r.type === typeId;
             });
-
             if (existingReplacer.length) {
               // Remove existing spec and replace with this one.
               replacers.splice(replacers.indexOf(existingReplacer[0]), 1);
               delete this.revivers[typeId];
               delete this.types[typeId];
             }
-
             if (typeof spec === 'function') {
               // Support registering just a class without replacer/reviver
               var Class = spec;
@@ -5364,60 +4780,48 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
               };
             } else if (isArray(spec)) {
               var _spec = spec,
-                  _spec2 = _slicedToArray(_spec, 3),
-                  test = _spec2[0],
-                  replace = _spec2[1],
-                  revive = _spec2[2];
-
+                _spec2 = _slicedToArray(_spec, 3),
+                test = _spec2[0],
+                replace = _spec2[1],
+                revive = _spec2[2];
               spec = {
                 test: test,
                 replace: replace,
                 revive: revive
               };
             }
-
             if (!spec || !spec.test) {
               return;
             }
-
             var replacerObj = {
               type: typeId,
               test: spec.test.bind(spec)
             };
-
             if (spec.replace) {
               replacerObj.replace = spec.replace.bind(spec);
             }
-
             if (spec.replaceAsync) {
               replacerObj.replaceAsync = spec.replaceAsync.bind(spec);
             }
-
             var start = typeof opts.fallback === 'number' ? opts.fallback : opts.fallback ? 0 : Infinity;
-
             if (spec.testPlainObjects) {
               this.plainObjectReplacers.splice(start, 0, replacerObj);
             } else {
               this.nonplainObjectReplacers.splice(start, 0, replacerObj);
             } // Todo: We might consider a testAsync type
 
-
             if (spec.revive || spec.reviveAsync) {
               var reviverObj = {};
-
               if (spec.revive) {
                 reviverObj.revive = spec.revive.bind(spec);
               }
-
               if (spec.reviveAsync) {
                 reviverObj.reviveAsync = spec.reviveAsync.bind(spec);
               }
-
               this.revivers[typeId] = [reviverObj, {
                 plain: spec.testPlainObjects
               }];
             } // Record to be retrieved via public types property.
-
 
             this.types[typeId] = spec;
           }, this);
@@ -5425,7 +4829,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
         return this;
       }
     }]);
-
     return Typeson;
   }();
   /**
@@ -5435,11 +4838,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;function _type
    * @class
    */
 
-
   var Undefined = function Undefined() {
     _classCallCheck(this, Undefined);
   }; // eslint-disable-line space-before-blocks
-
 
   Undefined.__typeson__type__ = 'TypesonUndefined'; // The following provide classes meant to avoid clashes with other values
   // To insist `undefined` should be added
@@ -5575,35 +4976,27 @@ var exports = __webpack_exports__;
   \************************************************************************************************************************************************************************/
 
 
+function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */ _regeneratorRuntime = function _regeneratorRuntime() { return exports; }; var exports = {}, Op = Object.prototype, hasOwn = Op.hasOwnProperty, defineProperty = Object.defineProperty || function (obj, key, desc) { obj[key] = desc.value; }, $Symbol = "function" == typeof Symbol ? Symbol : {}, iteratorSymbol = $Symbol.iterator || "@@iterator", asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator", toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag"; function define(obj, key, value) { return Object.defineProperty(obj, key, { value: value, enumerable: !0, configurable: !0, writable: !0 }), obj[key]; } try { define({}, ""); } catch (err) { define = function define(obj, key, value) { return obj[key] = value; }; } function wrap(innerFn, outerFn, self, tryLocsList) { var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator, generator = Object.create(protoGenerator.prototype), context = new Context(tryLocsList || []); return defineProperty(generator, "_invoke", { value: makeInvokeMethod(innerFn, self, context) }), generator; } function tryCatch(fn, obj, arg) { try { return { type: "normal", arg: fn.call(obj, arg) }; } catch (err) { return { type: "throw", arg: err }; } } exports.wrap = wrap; var ContinueSentinel = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} var IteratorPrototype = {}; define(IteratorPrototype, iteratorSymbol, function () { return this; }); var getProto = Object.getPrototypeOf, NativeIteratorPrototype = getProto && getProto(getProto(values([]))); NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype); var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype); function defineIteratorMethods(prototype) { ["next", "throw", "return"].forEach(function (method) { define(prototype, method, function (arg) { return this._invoke(method, arg); }); }); } function AsyncIterator(generator, PromiseImpl) { function invoke(method, arg, resolve, reject) { var record = tryCatch(generator[method], generator, arg); if ("throw" !== record.type) { var result = record.arg, value = result.value; return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) { invoke("next", value, resolve, reject); }, function (err) { invoke("throw", err, resolve, reject); }) : PromiseImpl.resolve(value).then(function (unwrapped) { result.value = unwrapped, resolve(result); }, function (error) { return invoke("throw", error, resolve, reject); }); } reject(record.arg); } var previousPromise; defineProperty(this, "_invoke", { value: function value(method, arg) { function callInvokeWithMethodAndArg() { return new PromiseImpl(function (resolve, reject) { invoke(method, arg, resolve, reject); }); } return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg(); } }); } function makeInvokeMethod(innerFn, self, context) { var state = "suspendedStart"; return function (method, arg) { if ("executing" === state) throw new Error("Generator is already running"); if ("completed" === state) { if ("throw" === method) throw arg; return doneResult(); } for (context.method = method, context.arg = arg;;) { var delegate = context.delegate; if (delegate) { var delegateResult = maybeInvokeDelegate(delegate, context); if (delegateResult) { if (delegateResult === ContinueSentinel) continue; return delegateResult; } } if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) { if ("suspendedStart" === state) throw state = "completed", context.arg; context.dispatchException(context.arg); } else "return" === context.method && context.abrupt("return", context.arg); state = "executing"; var record = tryCatch(innerFn, self, context); if ("normal" === record.type) { if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue; return { value: record.arg, done: context.done }; } "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg); } }; } function maybeInvokeDelegate(delegate, context) { var methodName = context.method, method = delegate.iterator[methodName]; if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel; var record = tryCatch(method, delegate.iterator, context.arg); if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel; var info = record.arg; return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel); } function pushTryEntry(locs) { var entry = { tryLoc: locs[0] }; 1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry); } function resetTryEntry(entry) { var record = entry.completion || {}; record.type = "normal", delete record.arg, entry.completion = record; } function Context(tryLocsList) { this.tryEntries = [{ tryLoc: "root" }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0); } function values(iterable) { if (iterable) { var iteratorMethod = iterable[iteratorSymbol]; if (iteratorMethod) return iteratorMethod.call(iterable); if ("function" == typeof iterable.next) return iterable; if (!isNaN(iterable.length)) { var i = -1, next = function next() { for (; ++i < iterable.length;) if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next; return next.value = undefined, next.done = !0, next; }; return next.next = next; } } return { next: doneResult }; } function doneResult() { return { value: undefined, done: !0 }; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", { value: GeneratorFunctionPrototype, configurable: !0 }), defineProperty(GeneratorFunctionPrototype, "constructor", { value: GeneratorFunction, configurable: !0 }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) { var ctor = "function" == typeof genFun && genFun.constructor; return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name)); }, exports.mark = function (genFun) { return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun; }, exports.awrap = function (arg) { return { __await: arg }; }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () { return this; }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) { void 0 === PromiseImpl && (PromiseImpl = Promise); var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl); return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) { return result.done ? result.value : iter.next(); }); }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () { return this; }), define(Gp, "toString", function () { return "[object Generator]"; }), exports.keys = function (val) { var object = Object(val), keys = []; for (var key in object) keys.push(key); return keys.reverse(), function next() { for (; keys.length;) { var key = keys.pop(); if (key in object) return next.value = key, next.done = !1, next; } return next.done = !0, next; }; }, exports.values = values, Context.prototype = { constructor: Context, reset: function reset(skipTempReset) { if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined); }, stop: function stop() { this.done = !0; var rootRecord = this.tryEntries[0].completion; if ("throw" === rootRecord.type) throw rootRecord.arg; return this.rval; }, dispatchException: function dispatchException(exception) { if (this.done) throw exception; var context = this; function handle(loc, caught) { return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught; } for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i], record = entry.completion; if ("root" === entry.tryLoc) return handle("end"); if (entry.tryLoc <= this.prev) { var hasCatch = hasOwn.call(entry, "catchLoc"), hasFinally = hasOwn.call(entry, "finallyLoc"); if (hasCatch && hasFinally) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } else if (hasCatch) { if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0); } else { if (!hasFinally) throw new Error("try statement without catch or finally"); if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc); } } } }, abrupt: function abrupt(type, arg) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) { var finallyEntry = entry; break; } } finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null); var record = finallyEntry ? finallyEntry.completion : {}; return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record); }, complete: function complete(record, afterLoc) { if ("throw" === record.type) throw record.arg; return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel; }, finish: function finish(finallyLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel; } }, "catch": function _catch(tryLoc) { for (var i = this.tryEntries.length - 1; i >= 0; --i) { var entry = this.tryEntries[i]; if (entry.tryLoc === tryLoc) { var record = entry.completion; if ("throw" === record.type) { var thrown = record.arg; resetTryEntry(entry); } return thrown; } } throw new Error("illegal catch attempt"); }, delegateYield: function delegateYield(iterable, resultName, nextLoc) { return this.delegate = { iterator: values(iterable), resultName: resultName, nextLoc: nextLoc }, "next" === this.method && (this.arg = undefined), ContinueSentinel; } }, exports; }
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-
 function _interopDefault(ex) {
   return ex && _typeof(ex) === 'object' && 'default' in ex ? ex['default'] : ex;
 }
-
 var Dexie = _interopDefault(__webpack_require__(/*! dexie */ "dexie"));
-
 var nacl = _interopDefault(__webpack_require__(/*! tweetnacl */ "../../../.yarn/berry/cache/tweetnacl-npm-1.0.3-b7eef04660-8.zip/node_modules/tweetnacl/nacl-fast.js"));
-
 var Typeson = _interopDefault(__webpack_require__(/*! typeson */ "./.yarn/__virtual__/typeson-virtual-5b28fe396c/4/.yarn/berry/cache/typeson-npm-5.18.2-176b9d4ed8-8.zip/node_modules/typeson/dist/typeson.js"));
+var builtinTypes = _interopDefault(__webpack_require__(/*! typeson-registry/presets/builtin */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/builtin.js"));
 
-var builtinTypes = _interopDefault(__webpack_require__(/*! typeson-registry/presets/builtin */ "../../../.yarn/berry/cache/typeson-registry-npm-1.0.0-alpha.38-9e856b1ea8-8.zip/node_modules/typeson-registry/presets/builtin.js")); // Import some usable helper functions
-
-
+// Import some usable helper functions
 var override = Dexie.override;
 var _Promise = Dexie.Promise;
 var tableEncryptionOptions = {
@@ -5614,6 +5007,7 @@ var tableEncryptionOptions = {
   BLACKLIST: 'BLACKLIST'
 };
 var cryptoOptions = tableEncryptionOptions;
+
 /* options example: 
 {
 	table1: cryptoOptions.NON_INDEXED_FIELDS,
@@ -5629,31 +5023,25 @@ var cryptoOptions = tableEncryptionOptions;
 */
 
 var tson = new Typeson().register([builtinTypes]);
-
 function overrideParseStoresSpec(origFunc) {
   return function (stores, dbSchema) {
     stores._encryptionSettings = '++id';
     origFunc.call(this, stores, dbSchema);
   };
 }
-
 function compareArrays(a, b) {
   if (a.length !== b.length) {
     return false;
   }
-
   for (var i = 0; i < a.length; i++) {
     if (a[i] !== b[i]) {
       return false;
     }
   }
-
   return true;
 }
-
 var encoder = new TextEncoder();
 var decoder = new TextDecoder();
-
 function encryptObject(key, object, nonce) {
   nonce = nonce || nacl.randomBytes(nacl.secretbox.nonceLength);
   var stringToEncrypt = tson.stringify(object);
@@ -5663,34 +5051,27 @@ function encryptObject(key, object, nonce) {
   data.set(nonce);
   data.set(encrypted, nonce.length);
   return data;
-} // this prevents changing the shape of the object so
+}
+
+// this prevents changing the shape of the object so
 // the underlying engine can optimize the hidden class
-
-
 function hideValue(input) {
   switch (_typeof(input)) {
     case 'number':
       return 0;
-
     case 'string':
       return '';
-
     case 'boolean':
       return false;
-
     case 'undefined':
       return undefined;
-
     case 'symbol':
       return undefined;
   }
-
   return {};
 }
-
 function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
   var keyPromise;
-
   if (keyOrPromise.then) {
     keyPromise = keyOrPromise;
   } else if (keyOrPromise instanceof Uint8Array && keyOrPromise.length === 32) {
@@ -5698,9 +5079,7 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
   } else {
     throw new Error('Dexie-encrypted requires a UInt8Array of length 32 for a encryption key.');
   }
-
   db.Version.prototype._parseStoresSpec = override(db.Version.prototype._parseStoresSpec, overrideParseStoresSpec);
-
   if (db.verno > 0) {
     // Make sure new tables are added if calling encrypt after defining versions.
     try {
@@ -5709,14 +5088,11 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
       throw new Error('Dexie-encrypt: The call to encrypt() cannot be done on an open database');
     }
   }
-
   function encryptWithRule(table, entity, rule) {
     if (rule === undefined) {
       return entity;
     }
-
     var toEncrypt = {};
-
     if (rule.type === cryptoOptions.BLACKLIST) {
       for (var i = 0; i < rule.fields.length; i++) {
         toEncrypt[rule.fields[i]] = entity[rule.fields[i]];
@@ -5727,7 +5103,6 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
         return index.name;
       });
       var whitelist = rule.type === cryptoOptions.WHITELIST ? rule.fields : [];
-
       for (var _key in entity) {
         if (_key !== table.schema.primKey.name && entity.hasOwnProperty(_key) && indices.includes(_key) === false && whitelist.includes(_key) === false) {
           toEncrypt[_key] = entity[_key];
@@ -5735,26 +5110,20 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
         }
       }
     }
-
     entity.__encryptedData = encryptObject(key, toEncrypt, nonceOverride);
     return entity;
   }
-
   function decryptWithRule(entity, rule) {
     if (rule === undefined) {
       return entity;
     }
-
     if (entity && entity.__encryptedData) {
       var nonce = entity.__encryptedData.slice(0, nacl.secretbox.nonceLength);
-
       var message = entity.__encryptedData.slice(nacl.secretbox.nonceLength, entity.__encryptedData.length);
-
       var rawDecrypted = nacl.secretbox.open(message, nonce, key);
       var stringified = decoder.decode(rawDecrypted);
       var decrypted = tson.parse(stringified);
       var toReturn = {};
-
       for (var k in entity) {
         if (decrypted.hasOwnProperty(k)) {
           toReturn[k] = decrypted[k];
@@ -5762,23 +5131,18 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
           toReturn[k] = entity[k];
         }
       }
-
       return toReturn;
     }
-
     return entity;
   }
-
   var key;
   db.on('ready', function () {
     var encryptionSettings;
-
     try {
       encryptionSettings = db.table('_encryptionSettings');
     } catch (error) {
       throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
     }
-
     return keyPromise.then(function (receivedKey) {
       if (receivedKey instanceof Uint8Array && receivedKey.length === 32) {
         key = receivedKey;
@@ -5789,14 +5153,11 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
       return encryptionSettings.toCollection().last().then(function (oldSettings) {
         var changeDetectionObj = oldSettings ? oldSettings['__key_change_detection'] : null;
         var onKeyChangeResult;
-
         var keyChangePromise = _Promise.resolve();
-
         if (changeDetectionObj) {
           var nonce = changeDetectionObj.slice(0, nacl.secretbox.nonceLength);
           var message = changeDetectionObj.slice(nacl.secretbox.nonceLength, changeDetectionObj.length);
           var rawDecrypted = nacl.secretbox.open(message, nonce, key);
-
           if (!rawDecrypted) {
             // The key has changed. Let's call the handler
             onKeyChangeResult = onKeyChange(db);
@@ -5805,27 +5166,21 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
             });
           }
         }
-
         return keyChangePromise.then(function () {
           return _Promise.all(db.tables.map(function (table) {
             var oldSetting = oldSettings ? oldSettings[table.name] : undefined;
             var newSetting = cryptoSettings[table.name];
-
             function setupHooks() {
               if (newSetting === undefined) {
                 return;
               }
-
               table.hook('creating', function (primKey, obj) {
                 var preservedValue = _objectSpread({}, obj);
-
                 encryptWithRule(table, obj, newSetting);
-
                 this.onsuccess = function () {
                   delete obj.__encryptedData;
                   Object.assign(obj, preservedValue);
                 };
-
                 this.onerror = function () {
                   delete obj.__encryptedData;
                   Object.assign(obj, preservedValue);
@@ -5839,13 +5194,11 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
                 return decryptWithRule(obj, newSetting);
               });
             }
-
             if (oldSetting === newSetting) {
               // no upgrade needed.
               setupHooks();
               return;
             }
-
             if (oldSetting === undefined || newSetting === undefined) ;else if (typeof oldSetting !== 'string' && typeof newSetting !== 'string') {
               // both non-strings. Figure out if they're the same.
               if (newSetting.type === oldSetting.type) {
@@ -5879,80 +5232,64 @@ function encrypt(db, keyOrPromise, cryptoSettings, onKeyChange, nonceOverride) {
     });
   });
 }
-
 function clearAllTables(db) {
   return _Promise.all(db.tables.map(function (table) {
     return table.clear();
   }));
 }
-
 function clearEncryptedTables(_x) {
   return _clearEncryptedTables.apply(this, arguments);
 }
-
 function _clearEncryptedTables() {
-  _clearEncryptedTables = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(db) {
+  _clearEncryptedTables = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(db) {
     var encryptionSettings, promises;
-    return regeneratorRuntime.wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.prev = 0;
-            _context2.next = 3;
-            return db.table('_encryptionSettings').toCollection().last();
-
-          case 3:
-            encryptionSettings = _context2.sent;
-            _context2.next = 9;
-            break;
-
-          case 6:
-            _context2.prev = 6;
-            _context2.t0 = _context2["catch"](0);
-            throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
-
-          case 9:
-            promises = Object.keys(encryptionSettings).map( /*#__PURE__*/function () {
-              var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(key) {
-                var encryptionSettingValue;
-                return regeneratorRuntime.wrap(function _callee$(_context) {
-                  while (1) {
-                    switch (_context.prev = _context.next) {
-                      case 0:
-                        encryptionSettingValue = encryptionSettings[key];
-
-                        if (!tableEncryptionOptions[encryptionSettingValue]) {
-                          _context.next = 4;
-                          break;
-                        }
-
-                        _context.next = 4;
-                        return db.table(key).clear();
-
-                      case 4:
-                      case "end":
-                        return _context.stop();
+    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+      while (1) switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.prev = 0;
+          _context2.next = 3;
+          return db.table('_encryptionSettings').toCollection().last();
+        case 3:
+          encryptionSettings = _context2.sent;
+          _context2.next = 9;
+          break;
+        case 6:
+          _context2.prev = 6;
+          _context2.t0 = _context2["catch"](0);
+          throw new Error("Dexie-encrypted can't find its encryption table. You may need to bump your database version.");
+        case 9:
+          promises = Object.keys(encryptionSettings).map( /*#__PURE__*/function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(key) {
+              var encryptionSettingValue;
+              return _regeneratorRuntime().wrap(function _callee$(_context) {
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    encryptionSettingValue = encryptionSettings[key];
+                    if (!tableEncryptionOptions[encryptionSettingValue]) {
+                      _context.next = 4;
+                      break;
                     }
-                  }
-                }, _callee);
-              }));
-
-              return function (_x2) {
-                return _ref.apply(this, arguments);
-              };
-            }());
-            return _context2.abrupt("return", _Promise.all(promises));
-
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
+                    _context.next = 4;
+                    return db.table(key).clear();
+                  case 4:
+                  case "end":
+                    return _context.stop();
+                }
+              }, _callee);
+            }));
+            return function (_x2) {
+              return _ref.apply(this, arguments);
+            };
+          }());
+          return _context2.abrupt("return", _Promise.all(promises));
+        case 11:
+        case "end":
+          return _context2.stop();
       }
     }, _callee2, null, [[0, 6]]);
   }));
   return _clearEncryptedTables.apply(this, arguments);
 }
-
 Object.assign(encrypt, cryptoOptions, {
   clearAllTables: clearAllTables,
   clearEncryptedTables: clearEncryptedTables

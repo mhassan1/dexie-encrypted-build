@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.2.202] - 2023-07-05
+[1.2.202]: https://github.com/mhassan1/dexie-encrypted-build/compare/v1.2.201...v1.2.202
+
+- Bump dependencies
+
 ## [1.2.201] - 2020-11-20
 [1.2.201]: https://github.com/mhassan1/dexie-encrypted-build/compare/02bbc026...v1.2.201
 
