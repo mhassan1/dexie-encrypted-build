@@ -35,5 +35,6 @@
   },
   "peerDependencies": {
     "dexie": "^2.0.4 || ^3.0.0"
-  }
+  },
+  "packageManager": "yarn@4.0.0"
 }
