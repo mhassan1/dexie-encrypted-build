@@ -3230,8 +3230,8 @@ var undef = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "decode": function() { return /* binding */ decode; },
-/* harmony export */   "encode": function() { return /* binding */ encode; }
+/* harmony export */   decode: function() { return /* binding */ decode; },
+/* harmony export */   encode: function() { return /* binding */ encode; }
 /* harmony export */ });
 /* eslint-disable node/no-unsupported-features/es-syntax */
 
