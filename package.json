@@ -24,14 +24,11 @@
     "dexie-encrypted": "1.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.3",
-    "@babel/preset-env": "^7.12.1",
-    "babel-loader": "^9.1.2",
+    "@babel/core": "^8.1.3",
+    "@babel/preset-env": "^8.0.7",
+    "babel-loader": "^10.1.1",
     "webpack": "^5.76.2",
     "webpack-cli": "^4.2.0"
-  },
-  "resolutions": {
-    "semver@^6.0.0": "npm:@nicolo-ribaudo/semver-v6@^6.3.3"
   },
   "peerDependencies": {
     "dexie": "^2.0.4 || ^3.0.0"
